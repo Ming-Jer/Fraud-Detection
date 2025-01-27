@@ -3,8 +3,8 @@ import streamlit as st
 
 # Customize the sidebar
 markdown = """
-Reproducible Machine Learning for Credit Card Fraud Detection - Practical Handbook
-<https://fraud-detection-handbook.github.io/fraud-detection-handbook/Foreword.html>
+[Reproducible Machine Learning for Credit Card Fraud Detection - Practical Handbook]
+(https://fraud-detection-handbook.github.io/fraud-detection-handbook/Foreword.html)
 """
 
 st.sidebar.title("About")
@@ -14,11 +14,12 @@ st.sidebar.image(logo)
 
 
 # Customize page title
-st.title("Streamlit for Fraud Detection Applications")
+st.title("詐欺偵測程式(Fraud Detection Applications)")
 
 st.markdown(
     """
-    This Application demonstrates various interactive web apps based on Fraud Detection Handbook.
+    This application demonstrates various interactive web apps that showcase the Fraud Detection Handbook.
+    此應用程式展示了各種互動式網路應用程式，用以展示詐欺偵測手冊。
     """
 )
 
