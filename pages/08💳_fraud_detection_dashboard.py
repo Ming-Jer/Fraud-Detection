@@ -3,9 +3,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from sklearn.metrics import roc_auc_score, average_precision_score
+import os
 
 def get_metrics_df(error_df, threshold=0.50):
-
     yhat_default = np.where(error_df["Score"] >= 0.5, 1, 0)
     auc_score_default = roc_auc_score(error_df["Target variable"], yhat_default)
     ap_score_default = average_precision_score(error_df["Target variable"], yhat_default)
@@ -45,7 +45,8 @@ def get_metrics_df(error_df, threshold=0.50):
     return error_df, metrics_df, metrics_df_default
 
 # reading csv
-error_df = pd.read_csv('../data/error_df.csv')
+cwd = os.getcwd()
+error_df = pd.read_csv(cwd+'/data/error_df.csv')
 error_df.columns = ['Index', 'Target variable', 'Score']
 error_df = error_df[['Target variable', 'Score']]
 

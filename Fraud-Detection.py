@@ -3,8 +3,7 @@ import streamlit as st
 
 # Customize the sidebar
 markdown = """
-[Reproducible Machine Learning for Credit Card Fraud Detection - Practical Handbook]
-(https://fraud-detection-handbook.github.io/fraud-detection-handbook/Foreword.html)
+[Reproducible Machine Learning for Credit Card Fraud Detection - Practical Handbook](https://fraud-detection-handbook.github.io/fraud-detection-handbook/Foreword.html)
 """
 
 st.sidebar.title("About")
@@ -18,8 +17,7 @@ st.title("詐欺偵測程式(Fraud Detection Applications)")
 
 st.markdown(
     """
-    This application demonstrates various interactive web apps that showcase the Fraud Detection Handbook.
-    此應用程式展示了各種互動式網路應用程式，用以展示詐欺偵測手冊。
+    此應用程式展示了各種互動式網路應用程式，用以展示詐欺偵測手冊。This application demonstrates various interactive web apps that showcase the Fraud Detection Handbook.
     """
 )
 
@@ -32,7 +30,7 @@ markdown = """
 4. 機器學習模型驗證與模型選擇
 5. 非平衡資料演算法
 6. 深度學習
-7. 交談式詐欺偵測模型
+7. 詐欺偵測Dashboard
 
 """
 
