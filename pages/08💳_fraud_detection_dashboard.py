@@ -64,12 +64,12 @@ st.sidebar.image(logo)
 # creating threshold slider
 st.title("詐欺偵測儀表板 (Fraud Detection dashboard)")
 st.markdown("### 建立一個有效的機器學習應用程式以偵測金融犯罪案例。")
-threshold = st.slider("Threshold (default of 50%)", min_value=0.00, max_value=1.00, step=0.05, value=0.50)
-threshold_df, metrics, metrics_default = get_metrics_df(error_df, threshold=threshold)
 
 tab_dashboard, tab_performance = st.tabs(["Dashboard", "Performance"])
 
 with tab_dashboard:
+    threshold = st.slider("Threshold (default of 50%)", min_value=0.00, max_value=1.00, step=0.05, value=0.50)
+    threshold_df, metrics, metrics_default = get_metrics_df(error_df, threshold=threshold)
     # input box for cost, then display total cost of fraud
     number1 = st.number_input('正確偵測詐欺的成本(真陽性) (Cost of correctly detecting fraud)') # true positive
     number2 = st.number_input('將正常交易錯誤分類為詐欺的成本(假陽性) (Cost of incorrectly classifying normal transactions as fraudulent)') # false positive

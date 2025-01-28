@@ -93,7 +93,6 @@ alt text
 - Nilson Report：卡片詐騙損失降至285.8億美元
 - Magecart：深入解析Magecart
 
-### 範例 Example
-- 假設單一陣列/列表中包含某一群體的智商分數分布 Assuming a single array/list of data contains a distribution of IQ scores within a given population
+
 
 
