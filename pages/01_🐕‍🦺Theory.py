@@ -1,4 +1,9 @@
 import streamlit as st
+from pathlib import Path
+import os
+
+def read_markdown_file(markdown_file):
+    return Path(markdown_file).read_text()
 
 # Customize the sidebar
 markdown = """
@@ -14,7 +19,11 @@ st.sidebar.image(logo)
 st.title("詐欺偵測簡介 (Introduction to Fraud Detection)")
 
 markdown = """
-## 第一講：什麼是異常偵 Lecture 1: What is Anomaly Detection
-![Anomaly detection]("./images/anomaly_detection.png" "Anomaly detection")
+1. 什麼是異常偵 Lecture (What is Anomaly Detection)
 """
 st.header(markdown)
+
+# reading markdown file
+cwd = os.getcwd()
+intro_markdown = read_markdown_file(cwd+'/docs/Lecture1.md')
+st.markdown(intro_markdown, unsafe_allow_html=True)
