@@ -1,6 +1,6 @@
 ## 1: 什麼是異常偵 (What is Anomaly Detection)
-![Anomaly detection](anomaly_detection.png)
-<img src="../images/anomaly_detection.png" alt="Anomaly detection" />
+![Anomaly detection](./anomaly_detection.png)
+<img src="/app/images/anomaly_detection.png" alt="Anomaly detection" />
 
 - 異常可被視為與常態有顯著偏離的資料 An anomaly can be seen as data that deviates substantially from the norm 
 - 異常偵測是一個識別罕見觀測值的過程，這些觀測值與其所屬的大多數資料有顯著差異 Anomaly detection is the process of identifying rare observations which differ substantially from the majority of the data from where they are drawn
