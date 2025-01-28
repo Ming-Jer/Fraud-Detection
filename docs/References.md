@@ -37,15 +37,3 @@ publisher={Universit{\'e} Libre de Bruxelles}
 本合作得以實現要感謝[Innoviris](https://innoviris.brussels)（布魯塞爾地區研究創新研究所）自2012年起至2021年止的一系列資助。*2018至2021年：*DefeatFraud：深度特徵工程與學習解決方案在詐欺偵測中的評估與驗證*。Innoviris團隊計劃。*2015至2018年：*BruFence：用於自動化防禦系統的可擴展機器學習*。Innoviris橋接計劃。*2012至2015年：*信用卡詐欺偵測的自適應即時機器學習*。Innoviris博士計劃。
 
 本合作目前在[數據工程與數據科學(DEDS)項目](https://deds.ulb.ac.be/)框架下持續進行 - 該項目屬於地平線2020 - 瑪麗·斯克沃多夫斯卡-居里創新培訓網絡(H2020-MSCA-ITN-2020)計劃。
-
-## 1: 什麼是異常偵 (What is Anomaly Detection)
-![alt text](../images/anomaly_detection.png "Anomaly detection")
-
-- 異常可被視為與常態有顯著偏離的資料 An anomaly can be seen as data that deviates substantially from the norm 
-- 異常偵測是一個識別罕見觀測值的過程，這些觀測值與其所屬的大多數資料有顯著差異 Anomaly detection is the process of identifying rare observations which differ substantially from the majority of the data from where they are drawn
-- 應用範圍包括入侵偵測、詐欺偵測、故障偵測、醫療監控等 Applications include intrusion detection, fraud detection, fault detection, healthcare monitoring etc
-
-
-
-### Example
-- Assuming a single array/list of data contains a distribution of IQ scores within a given population
