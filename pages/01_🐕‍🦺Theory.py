@@ -36,7 +36,7 @@ with tab_fds:
 
 with tab_ad:
     markdown="""
-    #### 範例 Example
+    #### 線性異常偵測範例 Linear Anomaly Detection Example
     - 假設單一陣列/列表中包含某一群體的智商分數分布 Assuming a single array/list of data contains a distribution of IQ scores within a given population
     """
     st.markdown(markdown)
@@ -56,9 +56,17 @@ with tab_ad:
     - 離群值落在「最大值」之上或「最小值」之下
     """
     st.markdown(markdown)
+
     fig, ax = plt.subplots()
     ax.boxplot(s)
     st.pyplot(fig)
+
+    markdown="""
+    - 雖然這些技術適用於一維資料（即單一欄位），但在高維度的情況下，這些方法就變得過於複雜。While these techniques work for 1d data i.e. single columns, the higher-dimensional case is too complicated for these approaches.
+    - 因此需要採用非線性方法，因為我們必須確定特徵空間中不同欄位的資料如何相互作用，從而增強方法的預測能力。A non-linear approach is therefore required, as we need to determine how the data from different columns in the feature space interacts with each other, adding to the predictive ability of the approach.
+
+    """
+    st.markdown(markdown)
 
 with tab_ml:
     # reading markdown file
