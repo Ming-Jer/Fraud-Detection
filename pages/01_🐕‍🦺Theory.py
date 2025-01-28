@@ -19,7 +19,7 @@ st.sidebar.image(logo)
 
 st.subheader("詐欺偵測簡介 (Introduction to Fraud Detection)")
 
-tab_forward, tab_fds, tab_cfs, tab_ml, tab_ref, tab_ad = st.tabs(["前言", "詐欺偵測簡介", "詐欺偵測場景", "機器學習","參考文獻", "異常偵測範例"])
+tab_forward, tab_cfs, tab_fds, tab_ml, tab_ref, tab_ad = st.tabs(["前言", "詐欺偵測場景", "詐欺偵測簡介",  "機器學習","參考文獻", "異常偵測範例"])
 with tab_forward:
     st.image("./images/MIT-Fraud-Detection-PRESS.jpg", caption="Fraud Detection")
     # reading markdown file
@@ -93,3 +93,5 @@ with tab_ad:
 
     """
     st.markdown(markdown)
+
+tab_forward, tab_cfs, tab_fds, tab_ml, tab_ref, tab_ad = st.tabs(["前言", "詐欺偵測場景", "詐欺偵測簡介",  "機器學習","參考文獻", "異常偵測範例"])
