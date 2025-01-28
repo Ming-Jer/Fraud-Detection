@@ -43,9 +43,9 @@ with tab_ad:
 
     mu, sigma = 100, 10
     s = np.random.normal(mu, sigma, 1000)
-    
-    plt.hist(s, 40)
-    plt.show()
+    fig, ax = plt.subplots()
+    ax.hist(s, 40)
+    st.pyplot(fig)
 
     markdown="""
     #### Box Plot
@@ -56,8 +56,9 @@ with tab_ad:
     - 離群值落在「最大值」之上或「最小值」之下
     """
     st.markdown(markdown)
-    plt.boxplot(s)
-    plt.show()
+    fig, ax = plt.subplots()
+    ax.boxplot(s)
+    st.pyplot(fig)
 
 with tab_ml:
     # reading markdown file
