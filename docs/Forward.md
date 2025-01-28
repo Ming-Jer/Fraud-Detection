@@ -102,14 +102,14 @@ publisher={Universit{\'e} Libre de Bruxelles}
 
 本合作目前在[數據工程與數據科學(DEDS)項目](https://deds.ulb.ac.be/)框架下持續進行 - 該項目屬於地平線2020 - 瑪麗·斯克沃多夫斯卡-居里創新培訓網絡(H2020-MSCA-ITN-2020)計劃。
 
-[1]: <../docs/References.md> "CLBC+19"
+[1]: <./docs/References.md> "CLBC+19"
 
-[2]: <References.md> "DP15"
+[2]: <./docs/References.md> "DP15"
 
-[3]: <References.md> "PP19"
+[3]: <./docs/References.md> "PP19"
 
-[4]: <References.md> "SSB18"
+[4]: <./docs/References.md> "SSB18"
 
-[5]: <References.md> "LJ20"
+[5]: <./docs/References.md> "LJ20"
 
-[6]: <References.md> "PL18"
+[6]: <./docs/References.md> "PL18"
