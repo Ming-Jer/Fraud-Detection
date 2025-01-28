@@ -13,7 +13,7 @@ st.sidebar.image(logo)
 
 
 # Customize page title
-st.title("詐欺偵測程式(Fraud Detection Applications)")
+st.subheader("詐欺偵測程式(Fraud Detection Applications)")
 
 st.markdown(
     """
@@ -21,7 +21,7 @@ st.markdown(
     """
 )
 
-st.header("請選擇左列功能列功能")
+st.subheader("請選擇左列功能列功能")
 
 markdown = """
 1. Theory 背景知識、理論與發展現況
