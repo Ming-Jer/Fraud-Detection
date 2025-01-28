@@ -44,14 +44,26 @@ def get_metrics_df(error_df, threshold=0.50):
 
     return error_df, metrics_df, metrics_df_default
 
+
 # reading csv
 cwd = os.getcwd()
 error_df = pd.read_csv(cwd+'/data/error_df.csv')
 error_df.columns = ['Index', 'Target variable', 'Score']
 error_df = error_df[['Target variable', 'Score']]
 
+# Customize the sidebar
+markdown = """
+[信用卡詐欺偵測之可重製機器學習 - 實務手冊 (Reproducible Machine Learning for Credit Card Fraud Detection - Practical Handbook)](https://fraud-detection-handbook.github.io/fraud-detection-handbook/Foreword.html)
+"""
+
+st.sidebar.title("About")
+st.sidebar.info(markdown)
+logo = "./images/MIT-Fraud-Detection-PRESS.jpg"
+st.sidebar.image(logo)
+
 # creating threshold slider
-st.title("Fraud Detection dashboard")
+st.title("詐欺偵測儀表板 (Fraud Detection dashboard)")
+st.header("建立一個有效的機器學習應用程式以偵測金融犯罪案例。")
 threshold = st.slider("Threshold (default of 50%)", min_value=0.00, max_value=1.00, step=0.05, value=0.50)
 threshold_df, metrics, metrics_default = get_metrics_df(error_df, threshold=threshold)
 
