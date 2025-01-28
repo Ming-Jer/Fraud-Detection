@@ -34,10 +34,9 @@ with tab_forward:
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
 
 with tab_cfs:
-    st.image("./images/SEPA_FraudVolumePerType.png", caption="Fraud Volume")
-    st.write("使用在 SEPA 內發行的卡進行的信用卡欺詐總價值的演變。無卡欺詐(圖中黃色部分)佔報告的欺詐的大部分。")
-    st.image("./images/SEPA_FraudType_CardPresent.png", caption="Fraud Type")
-    st.write("SEPA 內按類別劃分的持卡欺詐價值的演變和細分。")
+    st.image("https://www.ecb.europa.eu/press/pr/date/2024/html/pr240801/ecb.pr240801.en_img0.png?0efabbbc959966f70a934562aab5df1f", 
+             caption="各類支付工具的詐欺絕對值與相對水平")
+    st.write("（左軸：詐欺總額（百萬歐元）；右軸：詐欺金額佔交易總額的比例）資料來源：歐洲經濟區支付服務提供商（不包括列支敦斯登，因其報告參考期僅始於2022年下半年）。")
 
     # reading markdown file
     cwd = os.getcwd()
