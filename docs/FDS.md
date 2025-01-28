@@ -1,5 +1,4 @@
 ## 1: 什麼是異常偵 (What is Anomaly Detection)
-(/app/images/anomaly_detection.png)
 ![Anomaly detection]("/app/images/anomaly_detection.png")
 
 - 異常可被視為與常態有顯著偏離的資料 An anomaly can be seen as data that deviates substantially from the norm 
