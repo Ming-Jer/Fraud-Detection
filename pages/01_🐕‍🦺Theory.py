@@ -15,16 +15,6 @@ st.sidebar.info(markdown)
 logo = "./images/MIT-Fraud-Detection-PRESS.jpg"
 st.sidebar.image(logo)
 
-'''
-# creating threshold slider
-st.title("詐欺偵測簡介 (Introduction to Fraud Detection)")
-
-markdown = """
-1. 什麼是異常偵 Lecture (What is Anomaly Detection)
-"""
-st.header(markdown)
-'''
-
 # reading markdown file
 cwd = os.getcwd()
 intro_markdown = read_markdown_file(cwd+'/docs/Lecture1.md')
