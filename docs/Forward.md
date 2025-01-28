@@ -1,15 +1,15 @@
 ### 信用卡詐欺偵測機器學習實務手冊
 #### 前言
-支付卡詐欺對企業主、支付卡發卡機構和交易服務公司來說是一個重大挑戰，每年造成巨大且不斷增長的財務損失。根據2024年尼爾森報告，全球支付卡詐欺損失從2011年的98.4億美元、2018年的278.5億美元、2022 年的334.5億美元，增加到2023 年的338.3億美元，預計到2027年將超過400億美元，參考[Nilson Report 2019 Issue 1164](https://nilsonreport.com/newsletters/1164/)[聯合信用卡中心摘譯的Nilson Report-第1276期](https://www.nccc.com.tw/wps/wcm/connect/188aedbc-431d-46eb-b816-cc7e838f1f6a/Nilson+Report%E7%AC%AC1276%E6%9C%9F%E9%87%8D%E9%BB%9E%E6%91%98%E8%AD%AF.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-188aedbc-431d-46eb-b816-cc7e838f1f6a-pi80Spt)。
+支付卡詐欺對企業主、支付卡發卡機構和交易服務公司來說是一個重大挑戰，每年造成巨大且不斷增長的財務損失。根據2024年尼爾森報告，全球支付卡詐欺損失從2011年的98.4億美元、2018年的278.5億美元、2022 年的334.5億美元，增加到2023 年的338.3億美元，預計到2027年將超過400億美元，參考[Nilson Report 2019 Issue 1164](https://nilsonreport.com/newsletters/1164/)，[聯合信用卡中心摘譯的Nilson Report-第1276期](https://www.nccc.com.tw/wps/wcm/connect/188aedbc-431d-46eb-b816-cc7e838f1f6a/Nilson+Report%E7%AC%AC1276%E6%9C%9F%E9%87%8D%E9%BB%9E%E6%91%98%E8%AD%AF.pdf?MOD=AJPERES&CACHEID=ROOTWORKSPACE-188aedbc-431d-46eb-b816-cc7e838f1f6a-pi80Spt)。
 
 
-在支付卡交易中偵測詐欺模式是個極具挑戰性的問題。支付卡交易所產生的資料量持續增長，這些資料集不僅包含大量樣本，還具有多維度性質且需要即時更新，使得人工分析師難以有效偵測其中的詐欺模式。有鑑於此，近十年來，支付卡詐欺偵測技術逐漸轉向採用機器學習（ML）方法，以自動化方式從海量資料中識別詐欺模式 [CLBC+19][1], [DP15][2], [PP19][3], [SSB18][4]。
+在支付卡交易中偵測詐欺模式是個極具挑戰性的問題。支付卡交易所產生的資料量持續增長，這些資料集不僅包含大量樣本，還具有多維度性質且需要即時更新，使得人工分析師難以有效偵測其中的詐欺模式。有鑑於此，近十年來，支付卡詐欺偵測技術逐漸轉向採用機器學習（ML）方法，以自動化方式從海量資料中識別詐欺模式 [CLBC+19] [1], [DP15] [2], [PP19] [3], [SSB18] [4]。
 
 在支付卡交易中偵測詐欺模式是個極具挑戰性的問題。支付卡交易所產生的資料量持續增長，這些資料集不僅包含大量樣本，還具有多維度性質且需要即時更新，使得人工分析師難以有效偵測其中的詐欺模式。有鑑於此，近十年來，支付卡詐欺偵測技術逐漸轉向採用機器學習（ML）方法，以自動化方式從海量資料中識別詐欺模式。
 
-將ML技術整合到支付卡詐欺偵測系統中，不僅大幅提升了詐欺偵測的效能，也協助支付處理機構更準確地識別非法交易。儘管詐欺交易的數量持續增加，但自2016年起，詐欺造成的損失比例反而開始下降，這個正面趨勢與ML解決方案的廣泛採用密切相關 {cite}`NilsonReport2019`。如今，實施基於ML的詐欺偵測系統不僅能節省資金，更已成為機構和企業建立客戶信任的關鍵要素。
+將ML技術整合到支付卡詐欺偵測系統中，不僅大幅提升了詐欺偵測的效能，也協助支付處理機構更準確地識別非法交易。儘管詐欺交易的數量持續增加，但自2016年起，詐欺造成的損失比例反而開始下降，這個正面趨勢與ML解決方案的廣泛採用密切相關 [Nilson Report 2019 Issue 1164](https://nilsonreport.com/newsletters/1164/)。如今，實施基於ML的詐欺偵測系統不僅能節省資金，更已成為機構和企業建立客戶信任的關鍵要素。
 
-在支付卡詐欺偵測的ML領域中，一個普遍存在的問題是已發表研究缺乏可重製性 {cite}`lucas2020credit,priscilla2019credit,patil2018survey,zojaji2016survey`。這個問題源於兩個主要因素：支付卡交易資料因隱私考量無法公開分享，以及研究者在提供程式碼和確保結果可重製方面的投入不足。
+在支付卡詐欺偵測的ML領域中，一個普遍存在的問題是已發表研究缺乏可重製性[LJ20][5] {cite}`lucas2020credit,priscilla2019credit,patil2018survey,zojaji2016survey`。這個問題源於兩個主要因素：支付卡交易資料因隱私考量無法公開分享，以及研究者在提供程式碼和確保結果可重製方面的投入不足。
 
 本書致力於為支付卡詐欺偵測技術的基準測試建立可重製性的基礎。鑑於此領域研究成果豐富，我們無法涵蓋所有現有技術，而是根據與工業合作夥伴Worldline十年來的合作經驗，精選了最具影響力的技術進行深入探討。
 
@@ -63,10 +63,14 @@
 - 深度學習：深度學習技術的最新發展使研究界越來越關注其在詐欺檢測中的應用。本書是首次深入探討這些方法在信用卡詐欺檢測問題上的使用和實現細節。第七章涵蓋了全連接前饋神經網絡等技術的實現和評估，以及更進階的技術，如自編碼器的表示學習或卷積或長短期記憶網絡等序列模型。
 
 #### Reference
-[1]: Fabrizio Carcillo, Yann-Aël Le Borgne, Olivier Caelen, Yacine Kessaci, Frédéric Oblé, and Gianluca Bontempi. Combining unsupervised and supervised learning in credit card fraud detection. Information Sciences, 2019. [CLBC+19]
+[1]: <Fabrizio Carcillo, Yann-Aël Le Borgne, Olivier Caelen, Yacine Kessaci, Frédéric Oblé, and Gianluca Bontempi. Combining unsupervised and supervised learning in credit card fraud detection. Information Sciences, 2019.> "CLBC+19"
 
-[2]: Andrea Dal Pozzolo. Adaptive machine learning for credit card fraud detection. Université libre de Bruxelles, 2015. [DP15]
+[2]: <Andrea Dal Pozzolo. Adaptive machine learning for credit card fraud detection. Université libre de Bruxelles, 2015.> "DP15"
 
-[3]: C Victoria Priscilla and D Padma Prabha. Credit card fraud detection: a systematic review. In International Conference on Information, Communication and Computing Technology, 290–303. Springer, 2019. [PP19]
+[3]: <C Victoria Priscilla and D Padma Prabha. Credit card fraud detection: a systematic review. In International Conference on Information, Communication and Computing Technology, 290–303. Springer, 2019.> "PP19"
 
-[4]: Imane Sadgali, Nawal Sael, and Faouzia Benabbou. Detection of credit card fraud: state of art. International Journal of computer science and network security, 18(11):76–83, 2018.[SSB18]
+[4]: <Imane Sadgali, Nawal Sael, and Faouzia Benabbou. Detection of credit card fraud: state of art. International Journal of computer science and network security, 18(11):76–83, 2018.> "SSB18"
+
+[5]: <Yvan Lucas and Johannes Jurgovsky. Credit card fraud detection using machine learning: a survey. arXiv preprint arXiv:2010.06479, 2020.> "LJ20"
+
+[6]: <Vipul Patil and Umesh Kumar Lilhore. A survey on different data mining & machine learning methods for credit card fraud detection. International Journal of Scientific Research in Computer Science, Engineering and Information Technology, 3(5):320–325, 2018.> "PL18"
