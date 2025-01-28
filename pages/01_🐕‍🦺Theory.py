@@ -15,7 +15,28 @@ st.sidebar.info(markdown)
 logo = "./images/MIT-Fraud-Detection-PRESS.jpg"
 st.sidebar.image(logo)
 
-# reading markdown file
-cwd = os.getcwd()
-intro_markdown = read_markdown_file(cwd+'/docs/Lecture1.md')
-st.markdown(intro_markdown, unsafe_allow_html=True)
+tab_forward, tab_fds, tab_ml, tab_ref = st.tabs(["前言", "詐欺偵測", "機器學習","參考文獻"])
+
+with tab_forward:
+    # reading markdown file
+    cwd = os.getcwd()
+    intro_markdown = read_markdown_file(cwd+'/docs/Forward.md')
+    st.markdown(intro_markdown, unsafe_allow_html=True)
+
+with tab_fds:
+    # reading markdown file
+    cwd = os.getcwd()
+    intro_markdown = read_markdown_file(cwd+'/docs/FDS.md')
+    st.markdown(intro_markdown, unsafe_allow_html=True)
+
+with tab_ml:
+    # reading markdown file
+    cwd = os.getcwd()
+    intro_markdown = read_markdown_file(cwd+'/docs/Lecture_ML.md')
+    st.markdown(intro_markdown, unsafe_allow_html=True)
+
+with tab_ref:
+    # reading markdown file
+    cwd = os.getcwd()
+    intro_markdown = read_markdown_file(cwd+'/docs/References.md')
+    st.markdown(intro_markdown, unsafe_allow_html=True)
