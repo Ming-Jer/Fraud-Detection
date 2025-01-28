@@ -39,7 +39,7 @@ with tab_cfs:
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
 with tab_fds:
-    st.image("./images/anomaly_detection.png", caption="Anomaly Detection")
+    st.image("./images/FDS.png", caption="Anomaly Detection")
     # reading markdown file
     cwd = os.getcwd()
     intro_markdown = read_markdown_file(cwd+'/docs/FDS.md')
@@ -60,6 +60,7 @@ with tab_ref:
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
 with tab_ad:
+    st.image("./images/anomaly_detection.png", caption="Anomaly Detection")
     markdown="""
     #### 單維度異常偵測範例 Simple Anomaly Detection Example
     - 假設單一陣列/列表中包含某一群體的智商分數分布 Assuming a single array/list of data contains a distribution of IQ scores within a given population

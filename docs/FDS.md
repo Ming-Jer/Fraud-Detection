@@ -9,6 +9,8 @@
 
 信用卡詐騙偵測系統（FDS）通常由五層控制組成{cite}`dal2017credit,dal2015adaptive`，如圖1所示。
 
+
+<img title="a title" alt="Fraud Detection System" src="https://fraud-detection-handbook.github.io/fraud-detection-handbook/_images/FDS.jpg">
 圖1. 圖示說明FDS中的控制層。本書主要聚焦於資料驅動模型，該模型透過對最可疑的交易發出警報來協助調查人員。
 </p>
 

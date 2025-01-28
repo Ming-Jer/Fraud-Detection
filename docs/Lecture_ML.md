@@ -1,22 +1,3 @@
-## Introduction
-
-本章提供了信用卡欺詐檢測問題的背景，探討問題是什麼，目前如何解決，以及為什麼機器學習可以幫助提供有效的解決方案。本章結構如下。
-
-This chapter provides the background to the problem of credit card fraud detection. It addresses what the problem is, how it is currently solved, and why machine learning can help in providing effective solutions. The chapter is structured as follows. 
-
-第 2.2 節首先討論信用卡欺詐問題及其原因和相關損失，依據本書撰寫時有關該主題的最新權威報告（特別是 2019 年的最新 Nilson 報告 [rep19] 和歐洲中央銀行 2020 年關於信用卡欺詐檢測的報告 [Ban20]），我們簡要總結了已知欺詐者用來進行欺詐交易的技術及其相關成本，本節並且討論欺詐預防技術，範圍從眾所周知的 PIN 碼到更高級的技術，例如生物特徵識別。
-
-[Section 2.2](Credit_Card_Fraud_Scenarios) first addresses the problem of credit card fraud together with its causes and related losses. Relying on the latest authoritative reports on the topic at the writing of this book (in particular, the latest Nilson report from 2019 {cite}`NilsonReport2019` and the European Central Bank report on credit card fraud detection from 2020 {cite}`ECB2020`), we briefly summarise the techniques known to be employed by fraudsters to perform fraudulent transactions, and their associated costs. The section also discusses *fraud prevention* techniques, which range from the well-known PIN codes to more advanced techniques such as biometric identification.
-
-接著 2.3 節介紹欺詐檢測系統的操作層面，概述如何在現實世界的欺詐檢測系統中執行欺詐檢測。理解這部份很重要，因為它證明有效的檢測需要自動化系統和欺詐調查員的組合，這具有重要意義。首先，自動化系統應該優化欺詐調查員的工作量。其次，自動化系統和人工調查員在不同的時間尺度上工作：雖然自動化系統通常會在不到一秒的時間內為交易提供風險評分，但欺詐調查通常需要聯繫客戶以確認欺詐行為，這可能需要幾天或幾週的時間。這些特性對本書使用的方法有重要影響。
-
-[Section 2.3](Fraud_Detection_System) then covers the operational side of a fraud detection system. It provides an overview of how fraud detection is performed in a real-world fraud detection system. Its understanding is important since it puts into evidence that effective detection requires both a mix of automated systems and fraud investigators. This has non-trivial implications. First, automated systems should optimize the workload of fraud investigators. Second, automated systems and human investigators work at different time scales: while automated systems usually provide risk scores for transactions in less than a second, fraud investigations usually require contacting a client to confirm a fraud, which can take days, or weeks. These peculiarities have important implications in the methodology used throughout this book.
-
-最後， 2.4 節回顧用於信用卡欺詐檢測的機器學習技術的主題。 現在很明顯，機器學習技術可以為信用卡欺詐檢測問題提供有效的解決方案，並且關於該主題的研究文獻在過去十年中呈指數增長。 該部分對過去五年（2015-2020）對該領域的最新調查進行綜合回顧，強調這些調查中提出的核心原則，並總結欺詐檢測系統的主要挑戰。
-
-Finally, [Section 2.4](ML_For_CCFD) reviews the topic of machine learning techniques for credit card fraud detection. It is now clear that machine learning techniques can provide effective solutions to the problem of credit card fraud detection, and the research literature on the topic has grown exponentially in the last decade. The section makes a metareview of the latest surveys on the domain in the last five years (2015-2020). It highlights the core principles presented in these surveys and summarizes the main challenges of fraud detection systems. 
-
-
 ### 信用卡欺詐檢測的機器學習
 
 信用卡欺詐檢測 (CCFD) 就像大海撈針，它需要從數百萬的日常交易中找出哪些是欺詐性的。由於資料量不斷增加，人類專家現在幾乎不可能從交易資料中檢測出有意義的模式。出於這個原因，機器學習技術的使用，現在廣泛用於欺詐檢測領域，其中需要從大型資料集中提取信息[Car18, DP15, LJ20, PP19]。
