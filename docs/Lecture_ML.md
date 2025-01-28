@@ -100,7 +100,7 @@ y,\hat{y} &= &
 \end{align}
 $$
 
-```{note}
+> [!NOTE]'''
 The zero/one loss function is a standard loss function for binary classification problems. It is however not well suited for credit card fraud detection problems, due to the high-class imbalance (much more genuine than fraudulent transactions). Estimating the performance of a fraud detection system is a non-trivial issue, which will be covered in depth in [Chapter 4[(Performance_Metrics).
 ```
 
