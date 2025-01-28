@@ -19,12 +19,14 @@ st.header("詐欺偵測簡介 (Introduction to Fraud Detection)")
 
 tab_forward, tab_fds, tab_ml, tab_ref = st.tabs(["前言", "詐欺偵測", "機器學習","參考文獻"])
 with tab_forward:
+    st.image("/app/images/MIT-Fraud-Detection-PRESS.jpg", caption="Fraud Detection")
     # reading markdown file
     cwd = os.getcwd()
     intro_markdown = read_markdown_file(cwd+'/docs/Forward.md')
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
 with tab_fds:
+    st.image("/app/images/anomaly_detection.png", caption="Anomaly Detection")
     # reading markdown file
     cwd = os.getcwd()
     intro_markdown = read_markdown_file(cwd+'/docs/FDS.md')
