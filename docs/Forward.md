@@ -63,7 +63,10 @@
 - 深度學習：深度學習技術的最新發展使研究界越來越關注其在詐欺檢測中的應用。本書是首次深入探討這些方法在信用卡詐欺檢測問題上的使用和實現細節。第七章涵蓋了全連接前饋神經網絡等技術的實現和評估，以及更進階的技術，如自編碼器的表示學習或卷積或長短期記憶網絡等序列模型。
 
 #### Reference
-[1]: Fabrizio Carcillo, Yann-Aël Le Borgne, Olivier Caelen, Yacine Kessaci, Frédéric Oblé, and Gianluca Bontempi. Combining unsupervised and supervised learning in credit card fraud detection. Information Sciences, 2019. "[CLBC+19]"
-[2]: Andrea Dal Pozzolo. Adaptive machine learning for credit card fraud detection. Université libre de Bruxelles, 2015. "[DP15]"
-[3]: C Victoria Priscilla and D Padma Prabha. Credit card fraud detection: a systematic review. In International Conference on Information, Communication and Computing Technology, 290–303. Springer, 2019. "[PP19]"
-[4]: Imane Sadgali, Nawal Sael, and Faouzia Benabbou. Detection of credit card fraud: state of art. International Journal of computer science and network security, 18(11):76–83, 2018."[SSB18]"
+[1]: Fabrizio Carcillo, Yann-Aël Le Borgne, Olivier Caelen, Yacine Kessaci, Frédéric Oblé, and Gianluca Bontempi. Combining unsupervised and supervised learning in credit card fraud detection. Information Sciences, 2019. [CLBC+19]
+
+[2]: Andrea Dal Pozzolo. Adaptive machine learning for credit card fraud detection. Université libre de Bruxelles, 2015. [DP15]
+
+[3]: C Victoria Priscilla and D Padma Prabha. Credit card fraud detection: a systematic review. In International Conference on Information, Communication and Computing Technology, 290–303. Springer, 2019. [PP19]
+
+[4]: Imane Sadgali, Nawal Sael, and Faouzia Benabbou. Detection of credit card fraud: state of art. International Journal of computer science and network security, 18(11):76–83, 2018.[SSB18]
