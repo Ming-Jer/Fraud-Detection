@@ -46,6 +46,8 @@ with tab_fds:
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
 with tab_ml:
+    st.image("./images/baseline_ML_workflow.png", caption="CCFS ML")
+    st.write("信用卡詐欺偵測的機器學習基線方法，以及最近關於該主題的調查中提出的大多數方法。")
     # reading markdown file
     cwd = os.getcwd()
     intro_markdown = read_markdown_file(cwd+'/docs/Lecture_ML.md')
