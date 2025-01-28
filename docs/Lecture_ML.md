@@ -8,7 +8,7 @@ Machine Learning (ML) is the study of algorithms that improve automatically thro
 
 ML 技術有效應對 CCFD 提出的挑戰的能力導致了過去十年中大量且不斷增長的研究。如圖 1 所示，在 2010 年至 2020 年間，已有數千篇與該主題相關的論文發表，僅 2020 年就發表了約 1500 篇論文。
 
-![alt text](images/ML_CCFD_GoogleScholar_2010_2020.png)
+![alt text](https://fraud-detection-handbook.github.io/fraud-detection-handbook/_images/ML_CCFD_GoogleScholar_2010_2020.png)
 <p style="text-align: center;">
 圖 1. 2010 年至 2020 年間機器學習和信用卡欺詐檢測主題的發表文章數量。來源：谷歌學術。
 </p>

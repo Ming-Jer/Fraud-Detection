@@ -36,7 +36,7 @@ It is useful to distinguish two transaction scenarios. The first, called *card-p
 
 This distinction is important since the techniques used to compromise a card vary, depending on whether a physical copy of the card needs to be produced or not. More importantly, fraudsters are recently more likely to exploit the deficiencies of CNP scenarios than CP ones, probably because CP scenarios have existed for more than two decades now, and have become pretty robust to fraud attacks, notably thanks to the EMV technology (Europay Mastercard and Visa, i.e. chip-embedded cards). Another reason is that simple considerations on physical barriers can often help to prevent CP frauds. As stated in the 2019 Nilson report, CNP scenarios accounted for 54% of all losses to fraud for the year 2018, while only accounting for less than 15% of all purchase volume worldwide (CNP+POS+ATM) {cite}`NilsonReport2019`. The proportion of CNP fraud is even higher in Europe and was reported to account for 79% of all transactions from cards issued within SEPA in the 2020 report on card fraud of the European Central Bank {cite}`ECB2020`, as reported in the figure below. 
 
-![alt text](./images/SEPA_FraudVolumePerType.png)
+![alt text](https://fraud-detection-handbook.github.io/fraud-detection-handbook/_images/SEPA_FraudVolumePerType.png)
 <p style="text-align: center;">
 圖 1. 使用在 SEPA 內發行的卡進行的信用卡欺詐總價值的演變。無卡欺詐(圖中黃色部分)佔報告的欺詐的大部分。
 Fig. 1. Evolution of total value of card fraud using cards issued within SEPA. <br>Card-not-present frauds account for the majority of reported frauds.
@@ -64,7 +64,7 @@ Card-present frauds occur when a fraudster manages to make a successful fraudule
 
 Statistics on the proportion of these fraud types in card-present scenarios were reported by the European Central Bank for 2018, see the chart below {cite}`ECB2020`.
 
-![alt text](./images/SEPA_FraudType_CardPresent.png)
+![alt text](https://fraud-detection-handbook.github.io/fraud-detection-handbook/_images/SEPA_FraudType_CardPresent.png)
 <p style="text-align: center;">
 圖2. SEPA 內按類別劃分的持卡欺詐價值的演變和細分。
 Fig. 2. Evolution and breakdown of the value of card-present fraud by category within SEPA.
