@@ -1,93 +1,58 @@
 ## 簡介 Introduction
 
-本章提供了信用卡欺詐檢測問題的背景，探討問題是什麼，目前如何解決，以及為什麼機器學習可以幫助提供有效的解決方案。本章結構如下。
+本章說明信用卡詐欺偵測問題的背景脈絡，探討此問題的本質、目前的解決方案，以及機器學習如何協助提供有效解決方案。本章架構如下：
 
-This chapter provides the background to the problem of credit card fraud detection. It addresses what the problem is, how it is currently solved, and why machine learning can help in providing effective solutions. The chapter is structured as follows. 
+首先，**信用卡欺詐場景** 探討信用卡詐欺的問題、成因及相關損失。基於撰寫本書時最新的權威報告（特別是 2019 年的 Nilson 報告及 2020 年歐洲中央銀行的信用卡詐欺偵測報告 [Ban20]），我們簡要歸納詐欺者慣用的詐欺交易手法及其相關成本。本節也探討詐欺防範技術，從常見的 PIN 碼到更進階的生物特徵識別等技術。
 
-首先，"信用卡欺詐場景" 討論信用卡欺詐問題及其原因和相關損失，依據本書撰寫時有關該主題的最新權威報告（特別是 2019 年的最新 Nilson 報告 [rep19] 和歐洲中央銀行 2020 年關於信用卡欺詐檢測的報告 [Ban20]），我們簡要總結了已知欺詐者用來進行欺詐交易的技術及其相關成本，本節並且討論欺詐預防技術，範圍從眾所周知的 PIN 碼到更高級的技術，例如生物特徵識別。
+接著，**詐欺偵測系統**介紹詐欺偵測系統的實務運作面向，概述實際環境中詐欺偵測的執行方式。理解這部分很重要，因為它凸顯出有效的詐欺偵測需要自動化系統與詐欺調查人員的協同合作。這帶來兩個重要影響：首先，自動化系統應該要能優化調查人員的工作負荷；其次，自動化系統與人工調查的運作時間尺度不同 - 自動化系統通常能在一秒內提供交易風險評分，但人工調查往往需要聯繫客戶確認詐欺情況，可能耗時數天或數週。這些特性對本書採用的方法論有重要影響。
 
-** Credit Card Fraud Scenarios: ** First, addresses the problem of credit card fraud together with its causes and related losses. Relying on the latest authoritative reports on the topic at the writing of this book (in particular, the latest Nilson report from 2019 {cite}`NilsonReport2019` and the European Central Bank report on credit card fraud detection from 2020 {cite}`ECB2020`), we briefly summarise the techniques known to be employed by fraudsters to perform fraudulent transactions, and their associated costs. The section also discusses *fraud prevention* techniques, which range from the well-known PIN codes to more advanced techniques such as biometric identification.
+最後，在**信用卡詐欺偵測機器學習(ML_For_CCFD)**章節，回顧信用卡詐欺偵測的機器學習技術。目前已經明確可知，機器學習技術能為信用卡詐欺偵測問題提供有效解決方案，且過去十年來相關研究文獻呈指數成長。本節綜覽2015-2020年該領域的最新研究綜述，強調這些研究中提出的核心原則，並歸納詐欺偵測系統的主要挑戰。
 
-接著，詐欺偵測系統介紹欺詐檢測系統的操作層面，概述如何在現實世界的欺詐檢測系統中執行欺詐檢測。理解這部份很重要，因為它證明有效的檢測需要自動化系統和欺詐調查員的組合，這具有重要意義。首先，自動化系統應該優化欺詐調查員的工作量。其次，自動化系統和人工調查員在不同的時間尺度上工作：雖然自動化系統通常會在不到一秒的時間內為交易提供風險評分，但欺詐調查通常需要聯繫客戶以確認欺詐行為，這可能需要幾天或幾週的時間。這些特性對本書使用的方法有重要影響。
+### 信用卡詐欺情境 Credit card fraud scenarios
 
-** Fraud_Detection_System** covers the operational side of a fraud detection system. It provides an overview of how fraud detection is performed in a real-world fraud detection system. Its understanding is important since it puts into evidence that effective detection requires both a mix of automated systems and fraud investigators. This has non-trivial implications. First, automated systems should optimize the workload of fraud investigators. Second, automated systems and human investigators work at different time scales: while automated systems usually provide risk scores for transactions in less than a second, fraud investigations usually require contacting a client to confirm a fraud, which can take days, or weeks. These peculiarities have important implications in the methodology used throughout this book.
+全球因信用卡詐欺行為造成的財務損失高達數百億美元。根據統計大腦研究所(Statistic Brain Research Institute)的資料，每十位美國人就有一位曾是信用卡詐欺的受害者（中位數損失金額為399美元）。根據歐洲中央銀行（ECB）最新報告，2018年單一歐元支付區（SEPA）的信用卡詐欺總損失達18億歐元。
 
-最後，在信用卡機器學習章節，回顧用於信用卡欺詐檢測的機器學習技術的主題。 現在很明顯，機器學習技術可以為信用卡欺詐檢測問題提供有效的解決方案，並且關於該主題的研究文獻在過去十年中呈指數增長。 該部分對過去五年（2015-2020）對該領域的最新調查進行綜合回顧，強調這些調查中提出的核心原則，並總結欺詐檢測系統的主要挑戰。
+詐騙者可能透過多種情境成功進行信用卡詐欺支付。目前雖然沒有明確的信用卡詐欺類型分類法，但某些詐欺模式確實較為常見。值得注意的是，詐欺偵測就像貓捉老鼠遊戲，詐欺模式會隨時間演變。隨著科技進步，無論是在詐欺防範或支付系統使用便利性方面，詐騙者的手法也在進化。他們會從舊有（且已修補的）目標轉向新技術的漏洞，同時也會利用合法交易量和特徵的持續變化。
 
-Finally, [Section 2.4](ML_For_CCFD) reviews the topic of machine learning techniques for credit card fraud detection. It is now clear that machine learning techniques can provide effective solutions to the problem of credit card fraud detection, and the research literature on the topic has grown exponentially in the last decade. The section makes a metareview of the latest surveys on the domain in the last five years (2015-2020). It highlights the core principles presented in these surveys and summarizes the main challenges of fraud detection systems. 
+### 實體卡與非實體(無)卡詐欺 Card-present vs Card-not-present frauds
 
-### 信用卡詐騙場景 Credit card fraud scenarios
+交易情境可分為兩類。第一類稱為「**實體卡**」（CP）情境，指需要實體卡片的交易，如商店（即銷售點POS）交易或ATM提款。第二類稱為「**無卡**」（CNP）情境，指不需要實體卡片的交易，包括網路、電話或電子郵件支付。
 
-信用卡欺詐活動造成的全球經濟損失價值數百億美元，根據 Statistic Brain Research Institute [Ins18]統計，十歲以上的美國人即曾經成為信用卡欺詐的受害者（中位數為 $399 美元）。根據最新的歐洲中央銀行 (ECB) 報告 [Ban20]，總水平2018 年，單一歐洲支付區 (SEPA) 的信用卡欺詐損失達 18 億歐元。
-
-Worldwide financial losses caused by credit card fraudulent activities are worth tens of billions of dollars. One American over ten has been a victim of credit card fraud (median amount of $399), according to the Statistic Brain Research Institute {cite}`StatisticBrain2018`. According to the latest European Central Bank (ECB) report {cite}`ECB2020`, the total level of card fraud losses amounted to €1.8 billion in 2018 in the Single European Payment Area (SEPA).
-
-存在多種可能導致欺詐者成功地使用信用卡進行欺詐性支付的場景，目前還沒有關於信用卡欺詐類型的明確分類法，儘管已知某些模式比其他模式更頻繁地發生。還應該注意的是，欺詐檢測是一場貓捉老鼠的遊戲，欺詐模式會隨著時間而變化。隨著技術的發展，無論是在欺詐預防還是支付系統的易用性方面，欺詐技術也在不斷發展。他們因應時代變遷，從舊的（現在是固定的）目標，轉移到新技術的脆弱性，他們還受益於真實交易的數量和特徵的不斷變化。
-
-There exists a wide variety of scenarios that may lead a fraudster to successfully perform fraudulent payments with a credit card. There is currently no definite taxonomy on credit card fraud types, though certain patterns are known to occur more frequently than others. It should also be noted that fraud detection is a cat and mouse game, where fraudulent patterns change over time. As technology evolves, both in terms of fraud prevention and ease of use of payment systems, so do fraudster techniques. They adapt by moving from the old (and by now fixed) targets to the vulnerability of the new technologies. They also benefit from the constant changes in volume and characteristics of genuine transactions.
-
-### 有卡與無卡欺詐 Card-present vs Card-not-present frauds
-
-區分下列兩種實務場景很有用，第一種稱為有卡 (CP) 場景，是指需要實體卡的場景，例如商店交易（也稱為銷售點 - POS）或現金點交易（例如在自動櫃員機 - ATM）。第二種稱為無卡（CNP）場景，是指不需要使用實體卡的場景，包括通過網際網路、電話或電子郵件進行的支付。
-
-It is useful to distinguish two transaction scenarios. The first, called *card-present* (CP) scenarios, refer to scenarios where a physical card is needed, such as transactions at a store (also referred to as a point-of-sale - POS) or transactions at a cashpoint (for instance at an automated teller machine - ATM). The second, called *card-not-present* (CNP) scenarios, refers to scenarios where a physical card does not need to be used, which encompasses payments performed on the Internet, by phone, or by mail. 
-
-這種區別很重要，因為用於破獲卡片的技術會有所不同，具體取決於是否需要製作卡片的實體副本。更重要的是，與 CP 相比，欺詐者最近更有可能利用 CNP 場景的缺陷，這可能是因為 CP 場景已經存在了 20 多年，並且對欺詐攻擊變得相當強大，這主要歸功於 EMV 技術（Europay Mastercard和 Visa，即芯片嵌入卡）。另一個原因是對阻止實體卡片的簡單考慮，通常有助於防止 CP 欺詐。正如 2019 年 Nilson 報告所述，CNP 情景佔 2018 年所有欺詐損失的 54%，而僅佔全球所有購買量 (CNP+POS+ATM) [rep19] 的不到 15%。在歐洲，CNP 欺詐的比例甚至更高，在歐洲中央銀行的 2020 年卡欺詐報告 [Ban20] 中，據報導佔 SEPA 內發行的卡的所有交易的 79%，如下圖所示。
-
-This distinction is important since the techniques used to compromise a card vary, depending on whether a physical copy of the card needs to be produced or not. More importantly, fraudsters are recently more likely to exploit the deficiencies of CNP scenarios than CP ones, probably because CP scenarios have existed for more than two decades now, and have become pretty robust to fraud attacks, notably thanks to the EMV technology (Europay Mastercard and Visa, i.e. chip-embedded cards). Another reason is that simple considerations on physical barriers can often help to prevent CP frauds. As stated in the 2019 Nilson report, CNP scenarios accounted for 54% of all losses to fraud for the year 2018, while only accounting for less than 15% of all purchase volume worldwide (CNP+POS+ATM) {cite}`NilsonReport2019`. The proportion of CNP fraud is even higher in Europe and was reported to account for 79% of all transactions from cards issued within SEPA in the 2020 report on card fraud of the European Central Bank {cite}`ECB2020`, as reported in the figure below. 
+這種區分很重要，因為竊取卡片資訊的手法會依是否需要製作實體卡片而有所不同。更重要的是，近期詐騙者更傾向於利用CNP情境的漏洞，而非CP情境。這可能是因為CP情境已存在二十多年，且在EMV技術（Europay、Mastercard和Visa的晶片卡）的協助下，已相當能抵禦詐欺攻擊。另一個原因是實體障礙往往有助於預防CP詐欺。根據2019年Nilson報告，2018年CNP情境佔所有詐欺損失的54%，但全球交易量（CNP+POS+ATM）僅佔不到15%。在歐洲，CNP詐欺的比例更高，根據歐洲中央銀行2020年信用卡詐欺報告，SEPA區域內發行的卡片中，CNP詐欺佔所有交易的79%。
+根據2024年12月Nilson報告，2023年全球、 美國境內 及美國境外國家 之簽帳金額、詐欺損失金額及詐欺損失 BP值，以美國境內來看，美國簽帳金額占全球簽帳金額的 25.29%，然而，美國詐欺損失金額卻占全球詐欺損失金額的 42.32%，主要原因係因美國的無卡交易(card-not-present, CNP)大幅增加 ，以及多數商店未使用 3DS交易驗證機制 所致。所致；相對地，美國境外國家， 商店對於顧客交易的安全性和隱私性較為嚴謹 ，具備相當程度的
+詐欺防範 例如歐盟實施的 支付服務指令修正案 (The revised Payment Service Directives, PSD2)。
 
 ![alt text](https://fraud-detection-handbook.github.io/fraud-detection-handbook/_images/SEPA_FraudVolumePerType.png)
 <p style="text-align: center;">
 圖 1. 使用在 SEPA 內發行的卡進行的信用卡欺詐總價值的演變。無卡欺詐(圖中黃色部分)佔報告的欺詐的大部分。
-Fig. 1. Evolution of total value of card fraud using cards issued within SEPA. <br>Card-not-present frauds account for the majority of reported frauds.
 </p>
 
-#### 有卡欺詐 Card-present frauds
+#### 實體卡詐欺 Card-present frauds
 
-當欺詐者設法在 ATM 或 POS 上使用實體支付卡進行成功的欺詐交易時，就會發生有卡欺詐。在此環境中，欺詐場景通常分為卡丟失或被盜、偽造卡和卡未收到。
+實體卡詐欺發生在詐騙者使用實體支付卡在ATM或POS端成功進行詐欺交易時。在這種情況下，詐欺情境通常可分為「遺失或被竊卡片」、「偽造卡片」和「未收到卡片」三類。
 
-Card-present frauds occur when a fraudster manages to make a successful fraudulent transaction using a physical payment card, either at an ATM or a POS. In this setting, fraud scenarios are usually categorized as *lost or stolen cards*, *counterfeited cards*, and *card not received*.
+**卡片遺失或被竊**：卡片原屬於合法持卡人，但在遺失或遭竊後落入詐騙者手中。這是實體卡詐欺中最常見的類型，只要卡片未被合法持卡人凍結，詐騙者就能持續進行交易。在這種情況下，詐騙者通常會試圖在最短時間內花費最多金額。
 
-**信用卡丟失或被盜**：該卡屬於合法客戶，在丟失或被盜後落入欺詐者手中。這是有卡欺詐設置中最常見的欺詐類型，只要卡未被其合法所有者阻止，欺詐者就可以進行交易。在這種情況下，欺詐者通常會盡可能快地花錢。
+**偽造卡片**：詐騙者透過複製卡片資訊製作假卡。這類資訊通常是透過「盜刷」（skimming）方式在合法持卡人不知情的情況下取得。由於合法持卡人並不知道他們的卡片被複製，這類詐欺的來源可能更難識別，因為詐騙者可能會等待很長時間才使用假卡。晶片與密碼（EMV）技術的廣泛使用已大幅減少這類詐欺。
 
-**Lost or stolen card**: The card belongs to a legitimate customer, and gets in the hands of a fraudster after a loss or a theft. This is the most common type of fraud in the card-present fraud setting and allows a fraudster to make transactions as long as the card is not blocked by its legitimate owner. In this scenario, the fraudster usually tries to spend as much as possible and as quickly as possible.
+**未收到卡片**：卡片在寄送過程中被詐騙者從合法持卡人的信箱中截獲。這種情況可能發生在持卡人申請新卡時被截獲，或詐騙者在持卡人不知情的情況下申請新卡（例如透過非法存取其銀行帳戶），並將卡片寄送到其他地址。在前者的情況下，持卡人可能會迅速通知銀行未收到卡片並要求凍結。後者則較難察覺，因為持卡人並不知道有人以其名義申請了新卡。
 
-**假卡**：假卡是由欺詐者通過壓印卡的資訊製成的，此類資訊通常是通過側錄合法客戶的卡而獲得的，而他們不會注意到。由於合法所有者不知道他們的卡副本的存在，欺詐的來源可能更難以識別，因為欺詐者可能會等待很長時間才能使用假卡。芯片和 PIN（又名 EMV）技術的使用增加減少了這種類型的欺詐。
-
-**Counterfeited card**: A fake card is produced by a fraudster, by imprinting the information of a card. Such information is usually obtained by *skimming* the card of the legitimate customer, without them noticing. Since the legitimate owners are not aware of the existence of a copy of their card, the source of the fraud might be more difficult to identify, since the fraudster can wait a long time before making use of the fake card. The increased use of chip-and-PIN (aka EMV) technology has reduced this type of fraud. 
-
-**未收到卡**：該卡被合法客戶郵箱中的欺詐者截取。如果客戶訂購新卡被攔截，或者欺詐者設法在合法客戶不知情的情況下訂購新卡（例如通過欺詐性存取他們的銀行帳戶）並將其交付給不同的客戶，則可能會發生這種情況地址。在前一種情況下，客戶可能會迅速警告銀行沒有收到他們的信用卡，並將其凍結。後一種情況可能更難檢測，因為客戶不知道訂購了一張新卡。
-
-**Card not received**: The card was intercepted by a fraudster in the mailbox of a legitimate customer. This may happen if a customer orders a new card, which gets intercepted, or if a fraudster manages to order a new card without the knowledge of the legitimate customer (for example by accessing fraudulently their bank account), and have it delivered to a different address. In the former case, the customers may quickly warn the bank that their card was not received, and have it blocked. The latter case can be harder to detect since the customer is not aware that a new card was ordered. 
-
-歐洲中央銀行報告了 2018 年這些欺詐類型在有卡場景中所佔比例的統計數據，見下圖 [Ban20]。
-
-Statistics on the proportion of these fraud types in card-present scenarios were reported by the European Central Bank for 2018, see the chart below {cite}`ECB2020`.
+根據歐洲中央銀行2018年的報告，實體卡詐欺類型的比例統計如下圖所示 [Ban20]。
 
 ![alt text](https://fraud-detection-handbook.github.io/fraud-detection-handbook/_images/SEPA_FraudType_CardPresent.png)
 <p style="text-align: center;">
 圖2. SEPA 內按類別劃分的持卡欺詐價值的演變和細分。
-Fig. 2. Evolution and breakdown of the value of card-present fraud by category within SEPA.
 </p>
 
-欺詐的主要類別是丟失和被盜，以及偽造卡，而未收到卡場景在欺詐損失中所佔比例非常小。 值得注意的是，無論是在 ATM 還是 POS 進行付款，這些欺詐比例大致相同，總體而言，有卡設置中的欺詐數量趨於減少。
-
-The main categories of frauds are *lost and stolen*, and *counterfeited cards*, whereas *card not received* scenarios account for a very small proportion of fraud losses. It is worth noting that these fraud proportions are around the same whether payments were made at an ATM or a POS, and that overall, the amount of frauds in card-present settings tends to decrease.
+主要詐欺類型為「遺失或遭竊」和「偽造卡片」，而「未收到卡片」情境僅佔詐欺損失中極小的比例。值得注意的是，無論交易發生在ATM或POS端，這些詐欺類型的比例都大致相同。整體而言，實體卡詐欺的金額呈現下降趨勢。
 
 #### 無卡欺詐 Card-not-present frauds
 
-無卡是指通過郵件、電話或互聯網遠程進行的一般欺詐類別，僅使用卡上的部分資訊。
+無卡欺詐(或稱非實體卡詐欺)泛指透過郵件、電話或網際網路等遠端方式，僅使用卡片上的部分資訊進行的詐欺行為。
 
-Card-not-present refers to the general category of frauds conducted remotely, either by mail, phone, or on the Internet, using only some of the information present on a card. 
+整體而言，這類詐欺的成因統計資料相對較少。舉例來說，與實體卡詐欺不同的是，歐洲中央銀行僅要求卡片支付方案營運商回報非實體卡詐欺的整體損失數據。
 
-總體而言，關於此類欺詐原因的統計數據較少。例如，與有卡欺詐相反，歐洲中央銀行只要求信用卡支付方案運營商，報告整體 CNP 欺詐損失。
+然而已知大多數非實體卡詐欺都是非法取得支付憑證（如卡號）的直接結果，這些憑證可能來自資料外洩，或有時直接從持卡人處取得（例如透過網路釣魚或詐騙簡訊）。值得注意的是，這些憑證通常不會直接使用，而是先在地下網路市場（暗網）上販售，之後才由犯罪集團使用。竊取資料的犯罪者通常與實際進行詐欺的犯罪者屬於不同群體。
 
-Overall, there are fewer statistics available on the cause of such frauds. For example, contrary to card-present frauds, the European Central Bank only requires the card payment scheme operators to report the overall CNP fraud losses.
+非實體卡詐欺通常涉及的資料包括卡號、卡片有效期限、卡片安全碼，以及個人帳單資訊（如持卡人地址）。
 
-然而，眾所周知，大多數 CNP 欺詐是非法獲得支付憑證（例如卡號）的直接後果，若非來自資料洩露，即為直接來自持卡人（例如通過網絡釣魚、詐騙簡訊）。同樣值得注意的是，此類憑據通常不直接使用，而是在地下網絡市場（暗網）上出售，後來被犯罪集團使用。竊取資料的犯罪分子通常與實施欺詐的犯罪分子不同 [Ban20, rep19 ]。
-
-It is however known that most CNP frauds are a direct consequence of illegally obtained payment credentials (e.g., card numbers), either from data breaches or sometimes directly from the cardholders (e.g. via phishing, scam text messages). Also worth noting, such credentials are usually not used directly, but rather put on sale on underground web marketplaces (the *dark web*), and later used by criminal groups. Criminals who steal data are usually a different group than criminals who perpetrate frauds {cite}`ECB2020,NilsonReport2019`. 
-
-無卡欺詐通常涉及的資料包括卡號、卡到期日期、卡安全碼和個人賬單資訊（例如持卡人的地址）。
-
-The data that is generally involved in card-not-present fraud involves the card number, card expiration date, card security code, and personal billing information (such as the cardholder’s address).
