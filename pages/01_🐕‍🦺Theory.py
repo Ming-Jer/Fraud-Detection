@@ -15,8 +15,9 @@ st.sidebar.info(markdown)
 logo = "./images/MIT-Fraud-Detection-PRESS.jpg"
 st.sidebar.image(logo)
 
-tab_forward, tab_fds, tab_ml, tab_ref = st.tabs(["前言", "詐欺偵測", "機器學習","參考文獻"])
+st.header("詐欺偵測簡介 (Introduction to Fraud Detection)")
 
+tab_forward, tab_fds, tab_ml, tab_ref = st.tabs(["前言", "詐欺偵測", "機器學習","參考文獻"])
 with tab_forward:
     # reading markdown file
     cwd = os.getcwd()
