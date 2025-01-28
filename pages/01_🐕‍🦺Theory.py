@@ -18,7 +18,7 @@ logo = "./images/MIT-Fraud-Detection-PRESS.jpg"
 st.sidebar.image(logo)
 
 # hidden div with anchor
-st.markdown("<div id='返回頁首(Top)'></div>", unsafe_allow_html=True) 
+st.markdown("<div id='linkto_top'></div>", unsafe_allow_html=True) 
 
 st.subheader("詐欺偵測簡介 (Introduction to Fraud Detection)")
 
@@ -111,6 +111,6 @@ with tab_ad:
 
     """
     st.markdown(markdown)
-    
+
     # add the link at the bottom of each page    
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
