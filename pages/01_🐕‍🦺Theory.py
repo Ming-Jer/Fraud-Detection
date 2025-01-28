@@ -39,7 +39,7 @@ with tab_cfs:
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
 with tab_fds:
-    st.image("./images/FDS.png", caption="Anomaly Detection")
+    st.image("./images/FDS.jpg", caption="Anomaly Detection")
     # reading markdown file
     cwd = os.getcwd()
     intro_markdown = read_markdown_file(cwd+'/docs/FDS.md')
