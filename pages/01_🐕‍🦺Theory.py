@@ -17,10 +17,10 @@ st.sidebar.info(markdown)
 logo = "./images/MIT-Fraud-Detection-PRESS.jpg"
 st.sidebar.image(logo)
 
-st.subheader("詐欺偵測簡介 (Introduction to Fraud Detection)")
-
 # hidden div with anchor
-st.markdown("<div id='linkto_top'></div>", unsafe_allow_html=True) 
+st.markdown("<div id='返回頁首(Top)'></div>", unsafe_allow_html=True) 
+
+st.subheader("詐欺偵測簡介 (Introduction to Fraud Detection)")
 
 tab_forward, tab_cfs, tab_fds, tab_ml, tab_ref, tab_ad = st.tabs(["前言", "詐欺偵測場景", "詐欺偵測簡介",  "機器學習","參考文獻", "異常偵測範例"])
 with tab_forward:
@@ -31,7 +31,7 @@ with tab_forward:
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
     # add the link at the bottom of each page
-    st.markdown("<a href='#linkto_top'>Link to top</a>", unsafe_allow_html=True)
+    st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
 
 with tab_cfs:
     st.image("./images/SEPA_FraudVolumePerType.png", caption="Fraud Volume")
@@ -45,7 +45,7 @@ with tab_cfs:
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
     # add the link at the bottom of each page
-    st.markdown("<a href='#linkto_top'>Link to top</a>", unsafe_allow_html=True)
+    st.markdown("<a href='#linkto_top'返回頁首(Top)</a>", unsafe_allow_html=True)
 
 with tab_fds:
     st.image("./images/FDS.jpg", caption="Anomaly Detection")
@@ -55,7 +55,7 @@ with tab_fds:
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
     # add the link at the bottom of each page
-    st.markdown("<a href='#linkto_top'>Link to top</a>", unsafe_allow_html=True)
+    st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
 
 with tab_ml:
     st.image("./images/baseline_ML_workflow.png", caption="CCFS ML")
@@ -65,11 +65,17 @@ with tab_ml:
     intro_markdown = read_markdown_file(cwd+'/docs/Lecture_ML.md')
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
+    # add the link at the bottom of each page
+    st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
+
 with tab_ref:
     # reading markdown file
     cwd = os.getcwd()
     intro_markdown = read_markdown_file(cwd+'/docs/References.md')
     st.markdown(intro_markdown, unsafe_allow_html=True)
+
+    # add the link at the bottom of each page
+    st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
 
 with tab_ad:
     st.image("./images/anomaly_detection.png", caption="Anomaly Detection")
@@ -105,3 +111,6 @@ with tab_ad:
 
     """
     st.markdown(markdown)
+    
+    # add the link at the bottom of each page    
+    st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
