@@ -16,6 +16,7 @@ from fds_subs import get_list_terminals_within_radius
 from fds_subs import generate_transactions_table
 from fds_subs import generate_dataset
 from fds_subs import add_frauds
+from fds_subs import get_stats
 
 
 # Customize the sidebar
@@ -242,6 +243,15 @@ with tab_scale:
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
 
 with tab_fraud:
+
+    with st.expander("顯示原始碼 See Source Code"):
+        with st.echo():
+            (nb_tx_per_day,nb_fraud_per_day,nb_fraudcard_per_day)=get_stats(transactions_df)
+
+            n_days=len(nb_tx_per_day)
+            tx_stats=pd.DataFrame({"value":pd.concat([nb_tx_per_day/50,nb_fraud_per_day,nb_fraudcard_per_day])})
+            tx_stats['stat_type']=["nb_tx_per_day"]*n_days+["nb_fraud_per_day"]*n_days+["nb_fraudcard_per_day"]*n_days
+            tx_stats=tx_stats.reset_index()
 
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
