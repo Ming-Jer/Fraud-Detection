@@ -246,15 +246,6 @@ with tab_fraud:
 
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
-            (nb_tx_per_day,nb_fraud_per_day,nb_fraudcard_per_day)=get_stats(transactions_df)
-
-            n_days=len(nb_tx_per_day)
-            tx_stats=pd.DataFrame({"value":pd.concat([nb_tx_per_day/50,nb_fraud_per_day,nb_fraudcard_per_day])})
-            tx_stats['stat_type']=["nb_tx_per_day"]*n_days+["nb_fraud_per_day"]*n_days+["nb_fraudcard_per_day"]*n_days
-            tx_stats=tx_stats.reset_index()
-
-    with st.expander("顯示原始碼 See Source Code"):
-        with st.echo():
             transactions_df = add_frauds(customer_profiles_table, terminal_profiles_table, transactions_df)
             st.dataframe(transactions_df, hide_index = True)
 
@@ -280,5 +271,14 @@ with tab_fraud:
     st.dataframe(transactions_df, hide_index = True)
     st.pyplot(fraud_and_transactions_stats_fig)
 
+    with st.expander("顯示原始碼 See Source Code"):
+        with st.echo():
+            (nb_tx_per_day,nb_fraud_per_day,nb_fraudcard_per_day)=get_stats(transactions_df)
+
+            n_days=len(nb_tx_per_day)
+            tx_stats=pd.DataFrame({"value":pd.concat([nb_tx_per_day/50,nb_fraud_per_day,nb_fraudcard_per_day])})
+            tx_stats['stat_type']=["nb_tx_per_day"]*n_days+["nb_fraud_per_day"]*n_days+["nb_fraudcard_per_day"]*n_days
+            tx_stats=tx_stats.reset_index()
+            
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
