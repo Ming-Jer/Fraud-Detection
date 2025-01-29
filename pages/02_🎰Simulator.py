@@ -79,8 +79,9 @@ with tab_terminal_list:
             x_y_terminals = terminal_profiles_table[['x_terminal_id','y_terminal_id']].values.astype(float)
             # And get the list of terminals within radius of $50$ for the last customer
             avaiale_terminials=get_list_terminals_within_radius(customer_profiles_table.iloc[4], x_y_terminals=x_y_terminals, r=50)
-            st.write(avaiale_terminials)
-    st.write(avaiale_terminials)
+            st.write(avaiale_terminials[0], avaiale_terminials[1])
+    
+    st.write(avaiale_terminials[0], avaiale_terminials[1] )
     
     intro_markdown="""
     為了更好的視覺化，讓我們繪製
@@ -90,7 +91,7 @@ with tab_terminal_list:
     """
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
-    with st.expander("顯示原始碼"):
+    with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
             terminals_available_to_customer_fig, ax = plt.subplots(figsize=(5,5))
 
@@ -134,7 +135,7 @@ with tab_terminal_list:
             customer_profiles_table['available_terminals']=customer_profiles_table.apply(lambda x : get_list_terminals_within_radius(x, x_y_terminals=x_y_terminals, r=50), axis=1)
             st.dataframe(customer_profiles_table, hide_index = True)
     
-    st.dataframe(customer_profiles_table)
+    st.dataframe(customer_profiles_table, hide_index = True)
 
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
