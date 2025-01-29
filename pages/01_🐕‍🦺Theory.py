@@ -8,7 +8,7 @@ from fds_subs import read_markdown_file
 from fds_subs import fds_sidebar
 
 # Customize the sidebar
-fds_sidebar
+fds_sidebar()
 
 # hidden div with anchor
 st.markdown("<div id='linkto_top'></div>", unsafe_allow_html=True) 
