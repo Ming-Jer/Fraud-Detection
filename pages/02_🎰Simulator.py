@@ -67,10 +67,10 @@ with tab_terminal_list:
     st.write("舉例來說，讓我們取得最後一位客戶半徑$r=50$範圍內的終端機清單：")
     with st.expander("顯示原始碼"):
         with st.echo():
-        # We first get the geographical locations of all terminals as a numpy array
-        x_y_terminals = terminal_profiles_table[['x_terminal_id','y_terminal_id']].values.astype(float)
-        # And get the list of terminals within radius of $50$ for the last customer
-        get_list_terminals_within_radius(customer_profiles_table.iloc[4], x_y_terminals=x_y_terminals, r=50)
+            # We first get the geographical locations of all terminals as a numpy array
+            x_y_terminals = terminal_profiles_table[['x_terminal_id','y_terminal_id']].values.astype(float)
+            # And get the list of terminals within radius of $50$ for the last customer
+            get_list_terminals_within_radius(customer_profiles_table.iloc[4], x_y_terminals=x_y_terminals, r=50)
     
 
     # add the link at the bottom of each page
