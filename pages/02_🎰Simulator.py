@@ -36,8 +36,8 @@ with tab_intro:
 
 with tab_customer:
     # reading markdown file
-    markdown = read_markdown_file(os.getcwd()+'/docs/Simulator_customer.md')
-    st.markdown(markdown, unsafe_allow_html=True)
+    intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator_customer.md')
+    st.markdown(intro_markdown, unsafe_allow_html=True)
 
     st.write("產生的客戶資料")
     with st.expander("顯示原始碼See Source Code"):
@@ -51,8 +51,8 @@ with tab_customer:
 
 with tab_terminal:
     # reading markdown file
-    markdown = read_markdown_file(os.getcwd()+'/docs/Simulator_terminalr.md')
-    st.markdown(markdown, unsafe_allow_html=True)
+    intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator_terminal.md')
+    st.markdown(intro_markdown, unsafe_allow_html=True)
 
     with st.expander("顯示原始碼See Source Code"):
         with st.echo():
@@ -65,8 +65,10 @@ with tab_terminal:
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
 
 with tab_terminal_list:
-    
-    st.write("舉例來說，讓我們取得最後一位客戶半徑$r=50$範圍內的終端機清單：")
+    # reading markdown file
+    intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator_list_terminal.md')
+    st.markdown(intro_markdown, unsafe_allow_html=True)
+
     with st.expander("顯示原始碼"):
         with st.echo():
             # We first get the geographical locations of all terminals as a numpy array
@@ -74,6 +76,45 @@ with tab_terminal_list:
             # And get the list of terminals within radius of $50$ for the last customer
             get_list_terminals_within_radius(customer_profiles_table.iloc[4], x_y_terminals=x_y_terminals, r=50)
     
+    intro_markdown="""
+    為了更好的視覺化，讓我們繪製
+    - 所有終端機的位置（以紅色表示）
+    - 最後一位客戶的位置（以藍色表示）
+    - 第一位客戶半徑50範圍內的區域（以綠色表示）
+    """
+    st.markdown(intro_markdown, unsafe_allow_html=True)
+
+    with st.expander("顯示原始碼"):
+        with st.echo():
+            terminals_available_to_customer_fig, ax = plt.subplots(figsize=(5,5))
+
+            # Plot locations of terminals
+            ax.scatter(terminal_profiles_table.x_terminal_id.values, 
+                    terminal_profiles_table.y_terminal_id.values, 
+                    color='blue', label = 'Locations of terminals')
+
+            # Plot location of the last customer
+            customer_id=4
+            ax.scatter(customer_profiles_table.iloc[customer_id].x_customer_id, 
+                    customer_profiles_table.iloc[customer_id].y_customer_id, 
+                    color='red',label="Location of last customer")
+
+            ax.legend(loc = 'upper left', bbox_to_anchor=(1.05, 1))
+
+            # Plot the region within a radius of 50 of the last customer
+            circ = plt.Circle((customer_profiles_table.iloc[customer_id].x_customer_id,
+                            customer_profiles_table.iloc[customer_id].y_customer_id), radius=50, color='g', alpha=0.2)
+            ax.add_patch(circ)
+
+            fontsize=15
+
+            ax.set_title("Green circle: \n Terminals within a radius of 50 \n of the last customer")
+            ax.set_xlim([0, 100])
+            ax.set_ylim([0, 100])
+                
+            ax.set_xlabel('x_terminal_id', fontsize=fontsize)
+            ax.set_ylabel('y_terminal_id', fontsize=fontsize)
+            st.pyplot(terminals_available_to_customer_fig)
 
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
