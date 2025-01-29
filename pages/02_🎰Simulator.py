@@ -39,24 +39,25 @@ with tab_customer:
     intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator_customer.md')
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
+    st.write("產生的客戶資料")
     with st.expander("顯示原始碼"):
         with st.echo():
             n_customers = 5
             customer_profiles_table = generate_customer_profiles_table(n_customers, random_state = 0)
-            st.write("產生的客戶資料")
-            st.dataframe(customer_profiles_table)
-    
+            
+    st.dataframe(customer_profiles_table)
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
 
 with tab_terminal:
     
+    st.write("例如，讓我們生成一個終端機資料表內含五個終端機：")
     with st.expander("顯示原始碼"):
         with st.echo():
-            st.write("例如，讓我們生成一個終端機資料表內含五個終端機：")
             n_terminals = 5
             terminal_profiles_table = generate_terminal_profiles_table(n_terminals, random_state = 0)
-            st.dataframe(terminal_profiles_table)
+
+    st.dataframe(terminal_profiles_table)
 
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
@@ -64,11 +65,13 @@ with tab_terminal:
 with tab_terminal_list:
     
     st.write("舉例來說，讓我們取得最後一位客戶半徑$r=50$範圍內的終端機清單：")
-    # We first get the geographical locations of all terminals as a numpy array
-    x_y_terminals = terminal_profiles_table[['x_terminal_id','y_terminal_id']].values.astype(float)
-    # And get the list of terminals within radius of $50$ for the last customer
+    with st.expander("顯示原始碼"):
+        with st.echo():
+        # We first get the geographical locations of all terminals as a numpy array
+        x_y_terminals = terminal_profiles_table[['x_terminal_id','y_terminal_id']].values.astype(float)
+        # And get the list of terminals within radius of $50$ for the last customer
+        get_list_terminals_within_radius(customer_profiles_table.iloc[4], x_y_terminals=x_y_terminals, r=50)
     
-    st.write(get_list_terminals_within_radius(customer_profiles_table.iloc[4], x_y_terminals=x_y_terminals, r=50))
 
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
