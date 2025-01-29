@@ -207,7 +207,7 @@ with tab_scale:
             (customer_profiles_table, terminal_profiles_table, transactions_df)=\
                 generate_dataset(n_customers = nc1, 
                      n_terminals = nt1, 
-                     nb_days=nb1, 
+                     nb_days=nd1, 
                      start_date="2024-04-01", 
                      r=5)
             st.dataframe(transactions_df, hide_index = True)
