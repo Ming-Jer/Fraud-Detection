@@ -4,26 +4,20 @@ import pandas as pd
 import os
 
 from fds_subs import get_metrics_df
+from fds_subs import fds_sidebar
+
+# Customize the sidebar
+fds_sidebar
+
+# creating threshold slider
+st.title("詐欺偵測儀表板 (Fraud Detection dashboard)")
+st.markdown("### 建立一個有效的機器學習應用程式以偵測金融犯罪案例。")
 
 # reading csv
 cwd = os.getcwd()
 error_df = pd.read_csv(cwd+'/data/error_df.csv')
 error_df.columns = ['Index', 'Target variable', 'Score']
 error_df = error_df[['Target variable', 'Score']]
-
-# Customize the sidebar
-markdown = """
-[信用卡詐欺偵測之可重製機器學習 - 實務手冊 (Reproducible Machine Learning for Credit Card Fraud Detection - Practical Handbook)](https://fraud-detection-handbook.github.io/fraud-detection-handbook/Foreword.html)
-"""
-
-st.sidebar.title("About")
-st.sidebar.info(markdown)
-logo = "./images/MIT-Fraud-Detection-PRESS.jpg"
-st.sidebar.image(logo)
-
-# creating threshold slider
-st.title("詐欺偵測儀表板 (Fraud Detection dashboard)")
-st.markdown("### 建立一個有效的機器學習應用程式以偵測金融犯罪案例。")
 
 tab_dashboard, tab_performance = st.tabs(["Dashboard", "Performance"])
 

@@ -1,7 +1,27 @@
 import numpy as np
 import pandas as pd
+from pathlib import Path
 from sklearn.metrics import roc_auc_score, average_precision_score
+import streamlit as st
 
+# 讀取Markdown文件
+def read_markdown_file(markdown_file):
+    return Path(markdown_file).read_text()
+
+# Customize the sidebar
+def fds_sidebar():
+    markdown = """
+    [信用卡詐欺偵測之可重製機器學習 - 實務手冊 (Reproducible Machine Learning for Credit Card Fraud Detection - Practical Handbook)](https://fraud-detection-handbook.github.io/fraud-detection-handbook/Foreword.html)
+    """
+
+    st.sidebar.title("About")
+    st.sidebar.info(markdown)
+    logo = "./images/MIT-Fraud-Detection-PRESS.jpg"
+    st.sidebar.image(logo)
+
+"""
+Packages from Fraud Detection Handbook
+"""
 def get_metrics_df(error_df, threshold=0.50):
 
     yhat_default = np.where(error_df["Score"] >= 0.5, 1, 0)
@@ -41,3 +61,32 @@ def get_metrics_df(error_df, threshold=0.50):
             )
 
     return error_df, metrics_df, metrics_df_default
+
+def generate_customer_profiles_table(n_customers, random_state=0):
+    
+    np.random.seed(random_state)
+        
+    customer_id_properties=[]
+    
+    # Generate customer properties from random distributions 
+    for customer_id in range(n_customers):
+        
+        x_customer_id = np.random.uniform(0,100)
+        y_customer_id = np.random.uniform(0,100)
+        
+        mean_amount = np.random.uniform(5,100) # Arbitrary (but sensible) value 
+        std_amount = mean_amount/2 # Arbitrary (but sensible) value
+        
+        mean_nb_tx_per_day = np.random.uniform(0,4) # Arbitrary (but sensible) value 
+        
+        customer_id_properties.append([customer_id,
+                                      x_customer_id, y_customer_id,
+                                      mean_amount, std_amount,
+                                      mean_nb_tx_per_day])
+        
+    customer_profiles_table = pd.DataFrame(customer_id_properties, columns=['CUSTOMER_ID',
+                                                                      'x_customer_id', 'y_customer_id',
+                                                                      'mean_amount', 'std_amount',
+                                                                      'mean_nb_tx_per_day'])
+    
+    return customer_profiles_table

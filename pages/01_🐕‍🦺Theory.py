@@ -1,21 +1,14 @@
 import os
 import streamlit as st
 import numpy as np
-from pathlib import Path
+
 import matplotlib.pyplot as plt
 
-def read_markdown_file(markdown_file):
-    return Path(markdown_file).read_text()
+from fds_subs import read_markdown_file
+from fds_subs import fds_sidebar
 
 # Customize the sidebar
-markdown = """
-[信用卡詐欺偵測之可重製機器學習 - 實務手冊 (Reproducible Machine Learning for Credit Card Fraud Detection - Practical Handbook)](https://fraud-detection-handbook.github.io/fraud-detection-handbook/Foreword.html)
-"""
-
-st.sidebar.title("About")
-st.sidebar.info(markdown)
-logo = "./images/MIT-Fraud-Detection-PRESS.jpg"
-st.sidebar.image(logo)
+fds_sidebar
 
 # hidden div with anchor
 st.markdown("<div id='linkto_top'></div>", unsafe_allow_html=True) 
