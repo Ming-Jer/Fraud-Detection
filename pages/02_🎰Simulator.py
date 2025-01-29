@@ -25,7 +25,7 @@ st.markdown("<div id='linkto_top'></div>", unsafe_allow_html=True)
 st.subheader("交易資料模擬器 (Transaction data simulator)")
 
 # Tabs Menu
-tab_intro, tab_customer, tab_terminal, tab_terminal_list, tab_transactions = st.tabs(["模擬器簡介","客戶資料", "終端機配置", "客戶與終端機關聯", "交易生成"])
+tab_intro, tab_customer, tab_terminal, tab_list, tab_trans, tab_scale = st.tabs(["模擬器簡介","客戶資料", "終端機配置", "客戶與終端機關聯", "交易生成", "擴展交易資料"])
 
 with tab_intro:
     # reading markdown file
@@ -67,7 +67,7 @@ with tab_terminal:
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
 
-with tab_terminal_list:
+with tab_list:
     # reading markdown file
     intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator_list_terminal.md')
     st.markdown(intro_markdown, unsafe_allow_html=True)
@@ -141,7 +141,7 @@ with tab_terminal_list:
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
 
-with tab_transactions:
+with tab_trans:
     # reading markdown file
     intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator_transactions.md')
     st.markdown(intro_markdown, unsafe_allow_html=True)
@@ -166,6 +166,27 @@ with tab_transactions:
             st.dataframe(transactions_df, hide_index = True)
             
     st.dataframe(transactions_df, hide_index = True)
+
+    # add the link at the bottom of each page
+    st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
+
+with tab_scale:
+    # reading markdown file
+    intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator_Scale_transcation.md')
+    st.markdown(intro_markdown, unsafe_allow_html=True)
+    with st.expander("顯示原始碼 See Source Code"):
+        with st.echo():
+            (customer_profiles_table, terminal_profiles_table, transactions_df)=\
+                generate_dataset(n_customers = 5000, 
+                     n_terminals = 10000, 
+                     nb_days=183, 
+                     start_date="2018-04-01", 
+                     r=5)
+            st.dataframe(transactions_df, hide_index = True)
+
+    st.dataframe(transactions_df, hide_index = True)
+    st.write(transactions_df.shape)
+
 
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
