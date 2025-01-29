@@ -218,8 +218,8 @@ with tab_scale:
         with st.echo():
             distribution_amount_times_fig, ax = plt.subplots(1, 2, figsize=(18,4))
 
-            amount_val = transactions_df[transactions_df.TX_TIME_DAYS<10]['TX_AMOUNT'].sample(n=10000).values
-            time_val = transactions_df[transactions_df.TX_TIME_DAYS<10]['TX_TIME_SECONDS'].sample(n=10000).values
+            amount_val = transactions_df[transactions_df.TX_TIME_DAYS<10]['TX_AMOUNT'].sample(n=s_terminals).values
+            time_val = transactions_df[transactions_df.TX_TIME_DAYS<10]['TX_TIME_SECONDS'].sample(n=s_terminals).values
 
             sns.distplot(amount_val, ax=ax[0], color='r', hist = True, kde = False)
             ax[0].set_title('Distribution of transaction amounts', fontsize=14)
