@@ -183,9 +183,9 @@ with tab_scale:
     """
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
-    nc1=5
-    nt1=5
-    nd1=5
+    s_customers=5
+    s_terminals=5
+    s_nb_days=5
     options = st.selectbox(
         "選擇模擬資料規模",
         ("基本資料", "中等資料", "真實資料"),index=0,
@@ -194,23 +194,23 @@ with tab_scale:
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
             if (options=="基本資料"):
-                nc1=5
-                nt1=5
-                nd1=5
+                s_customers=5
+                s_terminals=5
+                s_nb_days=5
             elif (options=="中等資料"):
-                nc1=500
-                nt1=1000
-                nd1=18
+                s_customers=500
+                s_terminals=1000
+                s_nb_days=18
             elif (options=="真實資料"):
-                nc1 = 5000
-                nt1 = 10000
-                nd1=183
+                s_customers = 5000
+                s_terminals = 10000
+                s_nb_days=183
 
-            st.write("You selected:", options, nc1, nt1, nd1)
+            st.write("You selected:", options, s_customers, s_terminals, s_nb_days)
             (customer_profiles_table, terminal_profiles_table, transactions_df)=\
-                generate_dataset(n_customers = nc1,
-                     n_terminals = nt1, 
-                     nb_days=nd1, 
+                generate_dataset(n_customers = s_customers,
+                     n_terminals = s_terminals, 
+                     nb_days=s_nb_days, 
                      start_date="2024-04-01", 
                      r=5)
             st.dataframe(transactions_df, hide_index = True)
