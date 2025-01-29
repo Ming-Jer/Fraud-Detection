@@ -174,13 +174,35 @@ with tab_scale:
     # reading markdown file
     intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator_Scale_transcation.md')
     st.markdown(intro_markdown, unsafe_allow_html=True)
+
+    intro_markdown="""
+    可選擇模擬資料規模說明:
+    - 基本資料 (5位客戶、5個終端機、5天(65筆交易資料)
+    - 中等資料 (500位客戶、1,000個終端機、18天(65筆交易資料)
+    - 真實資料 (5,000位客戶、10,000個終端機、183天(1,754,155筆交易資料)
+    """
+    st.markdown(intro_markdown, unsafe_allow_html=True)
+
+    options = st.selectbox(
+        "選擇模擬資料規模",
+        ("基本資料", "中等資料", "真實資料"),index=0,
+    )
+    st.write("You selected:", options)
+
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
+            if (options=="基本資料"):
+                nc1=5, nt1=5, nd1=5
+            elif (options=="中等資料"):
+                nc1=500, nt1=1000, nd1=18
+            elif (options=="真實資料"):
+                nc1 = 5000, nt1 = 10000, nb1=183
+
             (customer_profiles_table, terminal_profiles_table, transactions_df)=\
-                generate_dataset(n_customers = 5000, 
-                     n_terminals = 10000, 
-                     nb_days=183, 
-                     start_date="2018-04-01", 
+                generate_dataset(n_customers = nc1, 
+                     n_terminals = nt1, 
+                     nb_days=nb1, 
+                     start_date="2024-04-01", 
                      r=5)
             st.dataframe(transactions_df, hide_index = True)
 
