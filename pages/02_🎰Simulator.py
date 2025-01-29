@@ -177,27 +177,22 @@ with tab_scale:
 
     intro_markdown="""
     可選擇模擬資料規模說明:
-    - 基本資料 (5位客戶、5個終端機、5天(65筆交易資料)
-    - 中等資料 (500位客戶、1,000個終端機、18天(65筆交易資料)
+    - 中等資料 (500位客戶、1,000個終端機、18天(17,067筆交易資料)
     - 真實資料 (5,000位客戶、10,000個終端機、183天(1,754,155筆交易資料)
     """
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
-    s_customers=5
-    s_terminals=5
-    s_nb_days=5
+    #s_customers=500
+    #s_terminals=1000
+    #s_nb_days=18
     options = st.selectbox(
         "選擇模擬資料規模",
-        ("基本資料", "中等資料", "真實資料"),index=0,
+        ("中等資料", "真實資料"),index=0,
     )
 
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
-            if (options=="基本資料"):
-                s_customers=5
-                s_terminals=5
-                s_nb_days=5
-            elif (options=="中等資料"):
+            if (options=="中等資料"):
                 s_customers=500
                 s_terminals=1000
                 s_nb_days=18
