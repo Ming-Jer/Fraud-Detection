@@ -10,9 +10,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_style('darkgrid', {'axes.facecolor': '0.9'})
 
-from fds_subs import generate_customer_profiles_table
 from fds_subs import fds_sidebar
 from fds_subs import read_markdown_file
+from fds_subs import generate_customer_profiles_table
+from fds_subs import generate_terminal_profiles_table
+
 
 # Customize the sidebar
 fds_sidebar()
@@ -44,3 +46,12 @@ with tab_customer:
 
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
+
+with tab_terminal:
+
+    n_terminals = 5
+    terminal_profiles_table = generate_terminal_profiles_table(n_terminals, random_state = 0)
+    terminal_profiles_table
+
+    st.write("例如，讓我們生成一個終端機資料表內含五個終端機：")
+    st.dataframe(customer_profiles_table)
