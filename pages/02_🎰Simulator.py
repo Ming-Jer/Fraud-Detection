@@ -2,9 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 import numpy as np
-import datetime
-import time
-import random
+
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -16,6 +14,7 @@ from fds_subs import generate_customer_profiles_table
 from fds_subs import generate_terminal_profiles_table
 from fds_subs import get_list_terminals_within_radius
 from fds_subs import generate_transactions_table
+from fds_subs import generate_dataset
 
 
 # Customize the sidebar
@@ -77,8 +76,10 @@ with tab_terminal_list:
         with st.echo():
             # We first get the geographical locations of all terminals as a numpy array
             x_y_terminals = terminal_profiles_table[['x_terminal_id','y_terminal_id']].values.astype(float)
+
             # And get the list of terminals within radius of $50$ for the last customer
             avaiale_terminials=get_list_terminals_within_radius(customer_profiles_table.iloc[4], x_y_terminals=x_y_terminals, r=50)
+            
             st.write(avaiale_terminials[0], avaiale_terminials[1])
     
     st.write(avaiale_terminials[0], avaiale_terminials[1] )
