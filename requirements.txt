@@ -3,3 +3,4 @@ pandas
 scikit-metrics
 scikit-learn
 matplotlib
+seaborn
