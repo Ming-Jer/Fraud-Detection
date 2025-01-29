@@ -213,6 +213,31 @@ with tab_scale:
     st.dataframe(transactions_df, hide_index = True)
     st.write(transactions_df.shape)
 
+    st.write("為了進行合理性檢查，繪製交易金額和交易時間的分布圖。")
+    with st.expander("顯示原始碼 See Source Code"):
+        with st.echo():
+            distribution_amount_times_fig, ax = plt.subplots(1, 2, figsize=(18,4))
+
+            amount_val = transactions_df[transactions_df.TX_TIME_DAYS<10]['TX_AMOUNT'].sample(n=10000).values
+            time_val = transactions_df[transactions_df.TX_TIME_DAYS<10]['TX_TIME_SECONDS'].sample(n=10000).values
+
+            sns.distplot(amount_val, ax=ax[0], color='r', hist = True, kde = False)
+            ax[0].set_title('Distribution of transaction amounts', fontsize=14)
+            ax[0].set_xlim([min(amount_val), max(amount_val)])
+            ax[0].set(xlabel = "Amount", ylabel="Number of transactions")
+
+            # We divide the time variables by 86400 to transform seconds to days in the plot
+            sns.distplot(time_val/86400, ax=ax[1], color='b', bins = 100, hist = True, kde = False)
+            ax[1].set_title('Distribution of transaction times', fontsize=14)
+            ax[1].set_xlim([min(time_val/86400), max(time_val/86400)])
+            ax[1].set_xticks(range(10))
+            ax[1].set(xlabel = "Time (days)", ylabel="Number of transactions")
+            st.pyplot(distribution_amount_times_fig)
+
+    st.pyplot(distribution_amount_times_fig)
+    st.write("交易金額的分布主要集中在小額交易；而交易時間的分布則呈現以正午為中心的每日高斯分布。這兩種分布都符合先前章節中使用的模擬參數設定。")
+
+
 
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
