@@ -5,11 +5,11 @@ fds_sidebar()
 
 
 # Customize page title
-st.subheader("詐欺偵測程式(Fraud Detection Applications)")
+st.subheader("詐欺偵測教學應用系統(Fraud Detection Applications)")
 
 st.markdown(
     """
-    此應用程式展示了各種互動式網路應用程式，用以展示詐欺偵測手冊。This application demonstrates various interactive web apps that showcase the Fraud Detection Handbook.
+    此應用程式展示了各種互動式網路應用程式，用以展示詐欺偵測手冊。
     """
 )
 

@@ -116,5 +116,15 @@ with tab_terminal_list:
             ax.set_ylabel('y_terminal_id', fontsize=fontsize)
             st.pyplot(terminals_available_to_customer_fig)
 
+    intro_markdown="""
+    使用 panda 的 apply 函數來計算每個客戶可用的終端機清單相當簡單直接。我們將結果儲存為客戶資料表中的新欄位 available_terminals。
+    """
+    st.markdown(intro_markdown, unsafe_allow_html=True)
+    with st.expander("顯示原始碼"):
+        with st.echo():
+            customer_profiles_table['available_terminals']=customer_profiles_table.apply(lambda x : get_list_terminals_within_radius(x, x_y_terminals=x_y_terminals, r=50), axis=1)
+    
+    st.dataframe(customer_profiles_table)
+
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
