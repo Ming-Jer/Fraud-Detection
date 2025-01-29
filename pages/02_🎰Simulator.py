@@ -39,8 +39,10 @@ with tab_customer:
     intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator_customer.md')
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
-    n_customers = 5
-    customer_profiles_table = generate_customer_profiles_table(n_customers, random_state = 0)
+    with st.expander("See source code"):
+        with st.echo():
+            n_customers = 5
+            customer_profiles_table = generate_customer_profiles_table(n_customers, random_state = 0)
 
     st.write("產生的客戶資料")
     st.dataframe(customer_profiles_table)
