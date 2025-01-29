@@ -183,7 +183,7 @@ def generate_transactions_table(customer_profile, start_date = "2018-04-01", nb_
     
     return customer_transactions
 
-def generate_dataset(n_customers = 10000, n_terminals = 1000000, nb_days=90, start_date="2018-04-01", r=5):
+def generate_dataset(n_customers = 5, n_terminals = 5, nb_days=5, start_date="2024-04-01", r=5):
     
     start_time=time.time()
     customer_profiles_table = generate_customer_profiles_table(n_customers, random_state = 0)
