@@ -15,6 +15,7 @@ from fds_subs import generate_terminal_profiles_table
 from fds_subs import get_list_terminals_within_radius
 from fds_subs import generate_transactions_table
 from fds_subs import generate_dataset
+from fds_subs import add_frauds
 
 
 # Customize the sidebar
@@ -237,7 +238,12 @@ with tab_scale:
     st.pyplot(distribution_amount_times_fig)
     st.write("交易金額的分布主要集中在小額交易；而交易時間的分布則呈現以正午為中心的每日高斯分布。這兩種分布都符合先前章節中使用的模擬參數設定。")
 
+    with st.expander("顯示原始碼 See Source Code"):
+        with st.echo():
+            transactions_df = add_frauds(customer_profiles_table, terminal_profiles_table, transactions_df)
+            st.dataframe(transactions_df, hide_index = True)
 
+    st.dataframe(transactions_df, hide_index = True)
 
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
