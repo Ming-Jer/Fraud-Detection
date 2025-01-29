@@ -192,11 +192,17 @@ with tab_scale:
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
             if (options=="基本資料"):
-                nc1=5, nt1=5, nd1=5
+                nc1=5
+                nt1=5
+                nd1=5
             elif (options=="中等資料"):
-                nc1=500, nt1=1000, nd1=18
+                nc1=500
+                nt1=1000
+                nd1=18
             elif (options=="真實資料"):
-                nc1 = 5000, nt1 = 10000, nb1=183
+                nc1 = 5000
+                nt1 = 10000
+                nb1=183
 
             (customer_profiles_table, terminal_profiles_table, transactions_df)=\
                 generate_dataset(n_customers = nc1, 
