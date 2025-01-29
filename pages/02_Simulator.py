@@ -20,11 +20,16 @@ fds_sidebar()
 # hidden div with anchor
 st.markdown("<div id='linkto_top'></div>", unsafe_allow_html=True) 
 st.subheader("交易資料模擬器 (Transaction data simulator)")
-# reading markdown file
-intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator.md')
-st.markdown(intro_markdown, unsafe_allow_html=True)
 
-tab_customer, tab_terminal = st.tabs(["客戶資料", "終端機配置"])
+tab_intro, tab_customer, tab_terminal = st.tabs(["模擬器簡介","客戶資料", "終端機配置"])
+
+with tab_intro:
+    # reading markdown file
+    intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator.md')
+    st.markdown(intro_markdown, unsafe_allow_html=True)
+    # add the link at the bottom of each page
+    st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
+
 
 with tab_customer:
     # reading markdown file
@@ -34,4 +39,8 @@ with tab_customer:
     n_customers = 5
     customer_profiles_table = generate_customer_profiles_table(n_customers, random_state = 0)
 
+    st.write("產生的客戶資料")
     st.dataframe(customer_profiles_table)
+
+    # add the link at the bottom of each page
+    st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
