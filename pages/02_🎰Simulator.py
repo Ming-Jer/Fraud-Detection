@@ -26,7 +26,7 @@ st.markdown("<div id='linkto_top'></div>", unsafe_allow_html=True)
 st.subheader("交易資料模擬器 (Transaction data simulator)")
 
 # Tabs Menu
-tab_intro, tab_customer, tab_terminal, tab_list, tab_trans, tab_scale = st.tabs(["模擬器簡介","客戶資料", "終端機配置", "客戶與終端機關聯", "交易生成", "擴展交易資料"])
+tab_intro, tab_customer, tab_terminal, tab_list, tab_trans, tab_scale, tab_fraud = st.tabs(["模擬器簡介","客戶資料", "終端機配置", "客戶與終端機關聯", "交易生成", "擴展交易資料","詐欺情境生成"])
 
 with tab_intro:
     # reading markdown file
@@ -238,12 +238,37 @@ with tab_scale:
     st.pyplot(distribution_amount_times_fig)
     st.write("交易金額的分布主要集中在小額交易；而交易時間的分布則呈現以正午為中心的每日高斯分布。這兩種分布都符合先前章節中使用的模擬參數設定。")
 
+    # add the link at the bottom of each page
+    st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
+
+with tab_fraud:
+
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
             transactions_df = add_frauds(customer_profiles_table, terminal_profiles_table, transactions_df)
             st.dataframe(transactions_df, hide_index = True)
 
+            sns.set(style='darkgrid')
+            sns.set(font_scale=1.4)
+
+            fraud_and_transactions_stats_fig = plt.gcf()
+
+            fraud_and_transactions_stats_fig.set_size_inches(15, 8)
+
+            sns_plot = sns.lineplot(x="TX_TIME_DAYS", y="value", data=tx_stats, hue="stat_type", hue_order=["nb_tx_per_day","nb_fraud_per_day","nb_fraudcard_per_day"], legend=False)
+
+            sns_plot.set_title('Total transactions, and number of fraudulent transactions \n and number of compromised cards per day', fontsize=20)
+            sns_plot.set(xlabel = "Number of days since beginning of data generation", ylabel="Number")
+
+            sns_plot.set_ylim([0,300])
+
+            labels_legend = ["# transactions per day (/50)", "# fraudulent txs per day", "# fraudulent cards per day"]
+
+            sns_plot.legend(loc='upper left', labels=labels_legend,bbox_to_anchor=(1.05, 1), fontsize=15)
+            st.pyplot(fraud_and_transactions_stats_fig)
+
     st.dataframe(transactions_df, hide_index = True)
+    st.pyplot(fraud_and_transactions_stats_fig)
 
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)

@@ -268,3 +268,20 @@ def add_frauds(customer_profiles_table, terminal_profiles_table, transactions_df
     print("Number of frauds from scenario 3: "+str(nb_frauds_scenario_3))
     
     return transactions_df    
+
+def get_stats(transactions_df):
+    #Number of transactions per day
+    nb_tx_per_day=transactions_df.groupby(['TX_TIME_DAYS'])['CUSTOMER_ID'].count()
+    #Number of fraudulent transactions per day
+    nb_fraud_per_day=transactions_df.groupby(['TX_TIME_DAYS'])['TX_FRAUD'].sum()
+    #Number of fraudulent cards per day
+    nb_fraudcard_per_day=transactions_df[transactions_df['TX_FRAUD']>0].groupby(['TX_TIME_DAYS']).CUSTOMER_ID.nunique()
+    
+    return (nb_tx_per_day,nb_fraud_per_day,nb_fraudcard_per_day)
+
+(nb_tx_per_day,nb_fraud_per_day,nb_fraudcard_per_day)=get_stats(transactions_df)
+
+n_days=len(nb_tx_per_day)
+tx_stats=pd.DataFrame({"value":pd.concat([nb_tx_per_day/50,nb_fraud_per_day,nb_fraudcard_per_day])})
+tx_stats['stat_type']=["nb_tx_per_day"]*n_days+["nb_fraud_per_day"]*n_days+["nb_fraudcard_per_day"]*n_days
+tx_stats=tx_stats.reset_index()
