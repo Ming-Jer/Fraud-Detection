@@ -190,7 +190,6 @@ with tab_scale:
         "選擇模擬資料規模",
         ("基本資料", "中等資料", "真實資料"),index=0,
     )
-    st.write("You selected:", options)
 
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
@@ -205,10 +204,11 @@ with tab_scale:
             elif (options=="真實資料"):
                 nc1 = 5000
                 nt1 = 10000
-                nb1=183
+                nd1=183
 
+            st.write("You selected:", options, nc1, nt1, nd1)
             (customer_profiles_table, terminal_profiles_table, transactions_df)=\
-                generate_dataset(n_customers = nc1, 
+                generate_dataset(n_customers = nc1,
                      n_terminals = nt1, 
                      nb_days=nd1, 
                      start_date="2024-04-01", 
