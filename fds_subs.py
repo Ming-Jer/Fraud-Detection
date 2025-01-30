@@ -133,7 +133,7 @@ def get_list_terminals_within_radius(customer_profile, x_y_terminals, r):
     # Return the list of terminal IDs
     return available_terminals
 
-def generate_transactions_table(customer_profile, start_date = "2018-04-01", nb_days = 10):
+def generate_transactions_table(customer_profile, start_date = "2024-04-01", nb_days = 10):
     
     customer_transactions = []
     
