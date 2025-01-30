@@ -184,9 +184,9 @@ with tab_scale:
     """
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
-    #s_customers=5000
-    #s_terminals=10000
-    #s_nb_days=183
+    #s_customers=500
+    #s_terminals=1000
+    #s_nb_days=18
     options = st.selectbox(
         "選擇模擬資料規模",
         ("中等資料", "真實資料"),index=0,
