@@ -189,7 +189,7 @@ with tab_scale:
     #s_nb_days=183
     options = st.selectbox(
         "選擇模擬資料規模",
-        ("中等資料", "真實資料"),index=1,
+        ("中等資料", "真實資料"),index=0,
     )
 
     with st.expander("顯示原始碼 See Source Code"):
