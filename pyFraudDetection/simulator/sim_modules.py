@@ -2,12 +2,12 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 from sklearn.metrics import roc_auc_score, average_precision_score
-import streamlit as st
 import datetime
 import time
 import random
 
 """
+交易資料模擬器所需函數
 Packages from Fraud Detection Handbook
 """
 def get_metrics_df(error_df, threshold=0.50):

@@ -1,19 +1,20 @@
 
 from pathlib import Path
 import streamlit as st
+import os
 
 
-# 讀取Markdown文件
-def read_markdown_file(markdown_file):
-    return Path(markdown_file).read_text()
+from pyFraudDetection.fds_utils.fds_UI import read_markdown_file
 
-# Customize the sidebar
-def fds_sidebar():
-    markdown = """
-    [信用卡詐欺偵測之可重製機器學習 - 實務手冊 (Reproducible Machine Learning for Credit Card Fraud Detection - Practical Handbook)](https://fraud-detection-handbook.github.io/fraud-detection-handbook/Foreword.html)
-    """
 
-    st.sidebar.title("About")
-    st.sidebar.info(markdown)
-    logo = "./images/MIT-Fraud-Detection-PRESS.jpg"
-    st.sidebar.image(logo)
+"""
+交易資料模擬器-使用者介面套件
+"""
+#
+# 交易資料模擬器-簡介功能
+def sim_tab_intro():
+    # reading markdown file
+    intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator.md')
+    st.markdown(intro_markdown, unsafe_allow_html=True)
+    # add the link at the bottom of each page
+    st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
