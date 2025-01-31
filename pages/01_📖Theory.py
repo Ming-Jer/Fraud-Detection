@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 
 #from fds_subs import read_markdown_file
 #from fds_subs import fds_sidebar
-from pyFraudDetection import read_markdown_file
-from pyFraudDetection import fds_sidebar
+from pyFraudDetection.fds_utils.fds_UI import read_markdown_file
+from pyFraudDetection.fds_utils.fds_UI import fds_sidebar
 
 
 # Customize the sidebar

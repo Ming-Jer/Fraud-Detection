@@ -5,8 +5,8 @@ import os
 
 #from fds_subs import get_metrics_df
 #from fds_subs import fds_sidebar
-from pyFraudDetection import get_metrics_df
-from pyFraudDetection import fds_sidebar
+from pyFraudDetection.fds_utils.fds_modules import get_metrics_df
+from pyFraudDetection.fds_utils.fds_UI import fds_sidebar
 
 # Customize the sidebar
 fds_sidebar()

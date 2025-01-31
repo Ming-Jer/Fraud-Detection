@@ -1,6 +1,6 @@
 import streamlit as st
 #from fds_subs import fds_sidebar
-from pyFraudDetection import fds_sidebar
+from pyFraudDetection.fds_utils.fds_UI import fds_sidebar
 
 fds_sidebar()
 

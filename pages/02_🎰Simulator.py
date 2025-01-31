@@ -8,20 +8,20 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_style('darkgrid', {'axes.facecolor': '0.9'})
 
-from pyFraudDetection import fds_sidebar
-from pyFraudDetection import read_markdown_file
-from pyFraudDetection import generate_customer_profiles_table
-from pyFraudDetection import generate_terminal_profiles_table
-from pyFraudDetection import get_list_terminals_within_radius
-from pyFraudDetection import generate_transactions_table
-from pyFraudDetection import generate_dataset
-from pyFraudDetection import add_frauds
-from pyFraudDetection import get_stats
+from pyFraudDetection.fds_utils.fds_UI import fds_sidebar
+from pyFraudDetection.fds_utils.fds_UI import read_markdown_file
+from pyFraudDetection.fds_utils.fds_modules import generate_customer_profiles_table
+from pyFraudDetection.fds_utils.fds_modules import generate_terminal_profiles_table
+from pyFraudDetection.fds_utils.fds_modules import get_list_terminals_within_radius
+from pyFraudDetection.fds_utils.fds_modules import generate_transactions_table
+from pyFraudDetection.fds_utils.fds_modules import generate_dataset
+from pyFraudDetection.fds_utils.fds_modules import add_frauds
+from pyFraudDetection.fds_utils.fds_modules import get_stats
 
-from pyFraudDetection import sim_tab_intro
-from pyFraudDetection import sim_tab_customer
-from pyFraudDetection import sim_tab_terminal
-from pyFraudDetection import sim_tab_list
+from pyFraudDetection.simulator.sim_UI import sim_tab_intro
+from pyFraudDetection.simulator.sim_UI import sim_tab_customer
+from pyFraudDetection.simulator.sim_UI import sim_tab_terminal
+from pyFraudDetection.simulator.sim_UI import sim_tab_list
 
 
 # Customize the sidebar
