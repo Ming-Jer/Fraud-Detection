@@ -8,3 +8,6 @@ from .sim_modules import add_frauds
 from .sim_modules import get_stats
 
 from .sim_UI import sim_tab_intro
+from .sim_UI import sim_tab_customer
+from .sim_UI import sim_tab_terminal
+from .sim_UI import sim_tab_list

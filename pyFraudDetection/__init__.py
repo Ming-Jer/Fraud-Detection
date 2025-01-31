@@ -14,3 +14,6 @@ from .simulator import add_frauds
 from .simulator import get_stats
 
 from .simulator import sim_tab_intro
+from .simulator import sim_tab_customer
+from .simulator import sim_tab_terminal
+from .simulator import sim_tab_list
