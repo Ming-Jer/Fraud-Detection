@@ -18,6 +18,11 @@ from pyFraudDetection import generate_dataset
 from pyFraudDetection import add_frauds
 from pyFraudDetection import get_stats
 
+from pyFraudDetection import sim_tab_intro
+
+
+
+
 
 # Customize the sidebar
 fds_sidebar()
@@ -30,11 +35,7 @@ st.subheader("交易資料模擬器 (Transaction data simulator)")
 tab_intro, tab_customer, tab_terminal, tab_list, tab_trans, tab_scale, tab_fraud = st.tabs(["模擬器簡介","客戶資料", "終端機配置", "客戶與終端機關聯", "交易生成", "擴展交易資料","詐欺情境生成"])
 
 with tab_intro:
-    # reading markdown file
-    intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator.md')
-    st.markdown(intro_markdown, unsafe_allow_html=True)
-    # add the link at the bottom of each page
-    st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
+    sim_tab_intro()
 
 
 with tab_customer:
