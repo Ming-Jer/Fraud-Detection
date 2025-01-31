@@ -9,7 +9,7 @@ from pyFraudDetection import get_metrics_df
 from pyFraudDetection import fds_sidebar
 
 # Customize the sidebar
-fds_sidebar
+fds_sidebar()
 
 # creating threshold slider
 st.title("詐欺偵測儀表板 (Fraud Detection dashboard)")
