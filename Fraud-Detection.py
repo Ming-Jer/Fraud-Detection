@@ -1,8 +1,8 @@
 import streamlit as st
-from fds_subs import fds_sidebar
+#from fds_subs import fds_sidebar
+from pyFraudDetection import fds_sidebar
 
 fds_sidebar()
-
 
 # Customize page title
 st.subheader("詐欺偵測教學應用系統(Fraud Detection Applications)")
@@ -12,7 +12,6 @@ st.markdown(
     此應用程式展示了各種互動式網路應用程式，用以展示詐欺偵測手冊。
     """
 )
-
 st.subheader("請選擇左列功能列功能")
 
 markdown = """
@@ -24,7 +23,5 @@ markdown = """
 6. 非平衡資料演算法
 7. 深度學習
 8. Fraud Detection dashboard-詐欺偵測儀表板
-
 """
-
 st.markdown(markdown)

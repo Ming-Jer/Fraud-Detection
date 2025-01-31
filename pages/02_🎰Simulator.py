@@ -8,15 +8,15 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_style('darkgrid', {'axes.facecolor': '0.9'})
 
-from fds_subs import fds_sidebar
-from fds_subs import read_markdown_file
-from fds_subs import generate_customer_profiles_table
-from fds_subs import generate_terminal_profiles_table
-from fds_subs import get_list_terminals_within_radius
-from fds_subs import generate_transactions_table
-from fds_subs import generate_dataset
-from fds_subs import add_frauds
-from fds_subs import get_stats
+from pyFraudDetection import fds_sidebar
+from pyFraudDetection import read_markdown_file
+from pyFraudDetection import generate_customer_profiles_table
+from pyFraudDetection import generate_terminal_profiles_table
+from pyFraudDetection import get_list_terminals_within_radius
+from pyFraudDetection import generate_transactions_table
+from pyFraudDetection import generate_dataset
+from pyFraudDetection import add_frauds
+from pyFraudDetection import get_stats
 
 
 # Customize the sidebar
