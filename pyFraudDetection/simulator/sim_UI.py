@@ -5,9 +5,9 @@ import os
 
 
 from pyFraudDetection.fds_utils.fds_UI import read_markdown_file
-from sim_modules import generate_customer_profiles_table
-from sim_modules import generate_terminal_profiles_table
-from sim_modules import get_list_terminals_within_radius
+from pyFraudDetection.simulator.sim_modules import generate_customer_profiles_table
+from pyFraudDetection.simulator.sim_modules import generate_terminal_profiles_table
+from pyFraudDetection.simulator.sim_modules import get_list_terminals_within_radius
 
 
 """
