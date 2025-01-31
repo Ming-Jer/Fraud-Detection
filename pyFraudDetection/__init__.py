@@ -12,7 +12,3 @@ from .simulator import generate_transactions_table
 from .simulator import generate_dataset
 from .simulator import add_frauds
 from .simulator import get_stats
-
-from .simulator import sim_tab_customer
-from .simulator import sim_tab_terminal
-from .simulator import sim_tab_list
