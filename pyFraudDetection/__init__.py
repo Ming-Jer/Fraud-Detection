@@ -4,6 +4,8 @@ from .fds_utils import fds_sidebar
 from .fds_utils import read_markdown_file
 
 from .fds_utils import get_metrics_df
+from .fds_utils import save_object
+from .fds_utils import restore_object
 
 from .simulator import generate_customer_profiles_table
 from .simulator import generate_terminal_profiles_table
