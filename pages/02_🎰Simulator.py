@@ -197,35 +197,36 @@ with tab_scale:
 
     options = st.selectbox(
         "模擬資料處理選項",
-        ("產生實真資料", "儲存實真資料", "載入實真資料"),index=2,
+        ("產生實真資料", "儲存實真資料", "載入實真資料"),index=0,
     )
-
+    (customer_profiles_table, terminal_profiles_table, transactions_df)=\
+                    generate_dataset(n_customers = 500,
+                         n_terminals = 1000, 
+                         nb_days=18, 
+                         start_date="2024-04-01", 
+                         r=5)
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
             if (options=="產生實真資料"):
                 st.write("You selected:", options, s_customers, s_terminals, s_nb_days)
                 (customer_profiles_table, terminal_profiles_table, transactions_df)=\
-                    generate_dataset(n_customers = s_customers,
-                         n_terminals = s_terminals, 
-                         nb_days=s_nb_days, 
+                    generate_dataset(n_customers = 5000,
+                         n_terminals = 10000, 
+                         nb_days=183, 
                          start_date="2024-04-01", 
                          r=5)
+                st.dataframe(transactions_df, hide_index = True)
             elif (options=="儲存實真資料"):
                 FILE_OUTPUT = os.getcwd()+"/data/simulated-data-no-fraud.pkl"
                 save_object(FILE_OUTPUT)
                     
             elif ():
                 FILE_INPUT=os.getcwd()+"/data/simulated-data-no-fraud.pkl" 
-                transactions_df=restore_object(FILE_INPUT)
+                if not os.path.exists(FILE_INPUT):
+                   st.write('真實資料不存在，請重新產生') 
+                else:
+                    transactions_df=restore_object(FILE_INPUT)
                 
-    
-    # Protocol=4 required for Google Colab
-    transactions_day.to_pickle(DIR_OUTPUT+filename_output, protocol=4)
-
-
-
-            st.dataframe(transactions_df, hide_index = True)
-
     st.dataframe(transactions_df, hide_index = True)
     st.write(transactions_df.shape)
 
