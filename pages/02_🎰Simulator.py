@@ -199,21 +199,30 @@ with tab_scale:
         "模擬資料處理選項",
         ("產生實真資料", "儲存實真資料", "載入實真資料"),index=0,
     )
+    # 保留未來可以讓使用者調整的空間
+    s_customers=500
+    s_terminals=1000
+    s_nb_days=18
+    s_date="2024-04-01"
     (customer_profiles_table, terminal_profiles_table, transactions_df)=\
-                    generate_dataset(n_customers = 500,
-                         n_terminals = 1000, 
-                         nb_days=18, 
-                         start_date="2024-04-01", 
+                    generate_dataset(n_customers = s_customers,
+                         n_terminals = s_terminals, 
+                         nb_days=s_nb_days, 
+                         start_date=s_date, 
                          r=5)
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
             if (options=="產生實真資料"):
-                st.write("You selected:", options, s_customers, s_terminals, s_nb_days)
+                s_customers=5000
+                s_terminals=10000
+                s_nb_days=183
+                s_date="2024-04-01"
+                st.write("You selected:", options, s_customers, s_terminals, s_nb_days,s_date)
                 (customer_profiles_table, terminal_profiles_table, transactions_df)=\
-                    generate_dataset(n_customers = 5000,
-                         n_terminals = 10000, 
-                         nb_days=183, 
-                         start_date="2024-04-01", 
+                    generate_dataset(n_customers = s_customers,
+                         n_terminals = s_terminals, 
+                         nb_days=s_nb_days, 
+                         start_date=s_date, 
                          r=5)
                 st.dataframe(transactions_df, hide_index = True)
             elif (options=="儲存實真資料"):
