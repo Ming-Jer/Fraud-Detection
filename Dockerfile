@@ -4,9 +4,9 @@
 # docker build --no-cache -t streamlit-fd:0.1 .
 
 # 如果只是更新程式碼
-# docker build -t streamlit-fd:0.2 .
+# docker build -t streamlit-fd:0.5 .
 # 
-# docker run -p 9501:9501 --rm --name streamlit-FD -v .\:/app/workspace streamlit-fd:0.2 bash
+# docker run -p 9501:9501 --rm --name streamlit-FD -v .\:/app/workspace streamlit-fd:0.5 bash
 
 FROM python:3.9-slim
 
