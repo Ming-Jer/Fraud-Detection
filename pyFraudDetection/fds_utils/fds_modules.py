@@ -73,13 +73,21 @@ def read_from_files(DIR_INPUT, BEGIN_DATE, END_DATE):
 # ### save_object
 # 
 
-# In[ ]:
+
+def print_directory_structure(path=''):
+    dir_list = os.listdir(path)
+    for item in dir_list:
+        if item['type'] == 'dir':
+            st.write(f'Directory: {item["path"]}')
+            print_directory_structure(item['path'])
+        else:
+            st.write(f'File: {item["path"]}')
 
 
 #Save oject as pickle file
 def save_object(obj, filename):
     with open(filename, 'wb') as output:
-        pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
+        obj.to_pickle(filename)
 
 #Restore oject from pickle file
 def restore_object(filename):

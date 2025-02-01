@@ -12,6 +12,8 @@ from pyFraudDetection import fds_sidebar
 from pyFraudDetection import read_markdown_file
 from pyFraudDetection import save_object
 from pyFraudDetection import restore_object
+from pyFraudDetection import save_simulated_data
+from pyFraudDetection import print_directory_structure
 
 # FDS simulator modules
 from pyFraudDetection import generate_customer_profiles_table
@@ -194,25 +196,34 @@ with tab_scale:
     - 載入先前已經產生真實資料 (便於後續使用)。
     """
     st.markdown(intro_markdown, unsafe_allow_html=True)
-
-    options = st.selectbox(
-        "模擬資料處理選項",
-        ("產生實真資料", "儲存實真資料", "載入實真資料"),index=0,
-    )
-    # 保留未來可以讓使用者調整的空間
     s_customers=500
     s_terminals=1000
     s_nb_days=18
     s_date="2024-04-01"
-    (customer_profiles_table, terminal_profiles_table, transactions_df)=\
-                    generate_dataset(n_customers = s_customers,
-                         n_terminals = s_terminals, 
-                         nb_days=s_nb_days, 
-                         start_date=s_date, 
-                         r=5)
+
+    options = st.selectbox(
+        "模擬資料處理選項",
+#        ("產生簡易資料","產生實真資料", "儲存實真資料", "載入實真資料"),index=0,
+        ("產生簡易資料","產生實真資料"),index=0,
+
+    )
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
-            if (options=="產生實真資料"):
+            if (options=="產生簡易資料"):
+                # 先產生一個小的檔案，加速系統運作
+                # 保留未來可以讓使用者調整的空間
+                s_customers=500
+                s_terminals=1000
+                s_nb_days=18
+                s_date="2024-04-01"
+                (customer_profiles_table, terminal_profiles_table, transactions_df)=\
+                                generate_dataset(n_customers = s_customers,
+                                     n_terminals = s_terminals, 
+                                     nb_days=s_nb_days, 
+                                     start_date=s_date, 
+                                     r=5)
+                st.dataframe(transactions_df, hide_index = True)                     
+            elif (options=="產生實真資料"):
                 s_customers=5000
                 s_terminals=10000
                 s_nb_days=183
@@ -225,17 +236,7 @@ with tab_scale:
                          start_date=s_date, 
                          r=5)
                 st.dataframe(transactions_df, hide_index = True)
-            elif (options=="儲存實真資料"):
-                FILE_OUTPUT = os.getcwd()+"/data/simulated-data-no-fraud.pkl"
-                save_object(transactions_df, FILE_OUTPUT)
-                    
-            elif ():
-                FILE_INPUT=os.getcwd()+"/data/simulated-data-no-fraud.pkl" 
-                if not os.path.exists(FILE_INPUT):
-                   st.write('真實資料不存在，請重新產生') 
-                else:
-                    transactions_df=restore_object(FILE_INPUT)
-                
+
     st.dataframe(transactions_df, hide_index = True)
     st.write(transactions_df.shape)
 
@@ -248,6 +249,7 @@ with tab_scale:
             time_val = transactions_df[transactions_df.TX_TIME_DAYS<10]['TX_TIME_SECONDS'].sample(n=s_terminals).values
 
             sns.distplot(amount_val, ax=ax[0], color='r', hist = True, kde = False)
+            #sns.histplot(amount_val, ax=ax[0], color='r', kde = False)
             ax[0].set_title('Distribution of transaction amounts', fontsize=14)
             ax[0].set_xlim([min(amount_val), max(amount_val)])
             ax[0].set(xlabel = "Amount", ylabel="Number of transactions")
@@ -267,19 +269,32 @@ with tab_scale:
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)
 
 with tab_fraud:
-
+    # reading markdown file
+    intro_markdown = read_markdown_file(os.getcwd()+'/docs/Simulator_generate_fraud.md')
+    st.markdown(intro_markdown, unsafe_allow_html=True)
+    
+    st.write("我們根據這些情境加入詐欺交易：")
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
             transactions_df = add_frauds(customer_profiles_table, terminal_profiles_table, transactions_df)
             st.dataframe(transactions_df, hide_index = True)
 
-            st.write("Percentage of fraudulent transactions: ",transactions_df.TX_FRAUD.mean())
-            st.write("Number of fraudulent transactions: ", transactions_df.TX_FRAUD.sum())
+            st.write("詐欺交易數量： ", transactions_df.TX_FRAUD.sum())
             st.write("三種詐欺情境數量")
             st.write(transactions_df[transactions_df.TX_FRAUD_SCENARIO==1].shape)
             st.write(transactions_df[transactions_df.TX_FRAUD_SCENARIO==2].shape)
             st.write(transactions_df[transactions_df.TX_FRAUD_SCENARIO==3].shape)
-
+            st.write("詐欺交易百分比： ",transactions_df.TX_FRAUD.mean())
+    
+    st.write("詐欺交易數量： ", transactions_df.TX_FRAUD.sum())
+    st.write("三種詐欺情境數量")
+    st.write(transactions_df[transactions_df.TX_FRAUD_SCENARIO==1].shape)
+    st.write(transactions_df[transactions_df.TX_FRAUD_SCENARIO==2].shape)
+    st.write(transactions_df[transactions_df.TX_FRAUD_SCENARIO==3].shape)
+    st.write("詐欺交易百分比： ",transactions_df.TX_FRAUD.mean())
+    
+    st.write("我們的交易資料模擬集現已完成，所有交易都已加入詐欺標記。")
+    st.dataframe(transactions_df, hide_index = True)
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
             (nb_tx_per_day,nb_fraud_per_day,nb_fraudcard_per_day)=get_stats(transactions_df)
@@ -288,6 +303,13 @@ with tab_fraud:
             tx_stats=pd.DataFrame({"value":pd.concat([nb_tx_per_day/50,nb_fraud_per_day,nb_fraudcard_per_day])})
             tx_stats['stat_type']=["nb_tx_per_day"]*n_days+["nb_fraud_per_day"]*n_days+["nb_fraudcard_per_day"]*n_days
             tx_stats=tx_stats.reset_index()
+
+    intro_markdown="""
+    接下來讓我們檢視每日的交易總數、詐欺交易數量，以及遭入侵卡片數量的變化情形。
+    這個模擬每天產生約10,000筆交易，其中每日詐欺交易約85筆，涉及的詐欺卡片約80張。值得注意的是，第一個月的詐欺交易數量較少，這是因為情境二和情境三的詐欺行為分別持續28天和14天所致。
+    這個結果資料集具有以下特點：類別不平衡（詐欺交易不到1%）、混合數值與類別特徵、特徵間存在非簡單的關聯性，以及具有時間相依性的詐欺情境。
+    """
+    st.markdown(intro_markdown, unsafe_allow_html=True)
 
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
@@ -309,9 +331,19 @@ with tab_fraud:
 
             sns_plot.legend(loc='upper left', labels=labels_legend,bbox_to_anchor=(1.05, 1), fontsize=15)
             st.pyplot(fraud_and_transactions_stats_fig)
-
-    st.dataframe(transactions_df, hide_index = True)
+    
     st.pyplot(fraud_and_transactions_stats_fig)
 
+    intro_markdown="""
+    最後，讓我們將這個資料集儲存起來，以供本書後續使用。
+    我們不會儲存整個交易資料集，而是將其分割成每日批次。這樣做可以讓我們之後只需載入特定時期的資料，而不是整個資料集。為了加快載入速度，我們使用pickle格式而非CSV格式。所有檔案都會儲存在`DIR_OUTPUT`資料夾中，檔案名稱即為日期，副檔名為`.pkl`。
+    """
+    st.markdown(intro_markdown, unsafe_allow_html=True)
+    
+    #st.button("Save Data")
+    if st.button("Save Data"):
+        DIR_OUTPUT = os.getcwd()+"/data/simulated-data-raw/"
+        save_simulated_data(DIR_OUTPUT,transactions_df)
+        
     # add the link at the bottom of each page
     st.markdown("<a href='#linkto_top'>返回頁首(Top)</a>", unsafe_allow_html=True)

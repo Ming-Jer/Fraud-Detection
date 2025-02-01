@@ -224,3 +224,20 @@ def get_stats(transactions_df):
     nb_fraudcard_per_day=transactions_df[transactions_df['TX_FRAUD']>0].groupby(['TX_TIME_DAYS']).CUSTOMER_ID.nunique()
     
     return (nb_tx_per_day,nb_fraud_per_day,nb_fraudcard_per_day)
+
+def save_simulated_data(DIR_OUTPUT, transactions_df):
+    if not os.path.exists(DIR_OUTPUT):
+        os.makedirs(DIR_OUTPUT)
+
+    start_date = datetime.datetime.strptime("2024-04-01", "%Y-%m-%d")
+
+    for day in range(transactions_df.TX_TIME_DAYS.max()+1):
+        
+        transactions_day = transactions_df[transactions_df.TX_TIME_DAYS==day].sort_values('TX_TIME_SECONDS')
+        
+        date = start_date + datetime.timedelta(days=day)
+        filename_output = date.strftime("%Y-%m-%d")+'.pkl'
+        
+        # Protocol=4 required for Google Colab
+        #transactions_day.to_pickle(DIR_OUTPUT+filename_output, protocol=4)
+        transactions_day.to_pickle(DIR_OUTPUT+filename_output)

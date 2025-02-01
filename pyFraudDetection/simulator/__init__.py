@@ -6,3 +6,4 @@ from .sim_modules import generate_transactions_table
 from .sim_modules import generate_dataset
 from .sim_modules import add_frauds
 from .sim_modules import get_stats
+from .sim_modules import save_simulated_data

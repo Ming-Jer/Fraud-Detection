@@ -21,7 +21,7 @@
 
 交易生成流程如下圖所示。
 
-<img src="https://github.com/Ming-Jer/fraud-detection-handbook/blob/main/Chapter_3_GettingStarted/images/FlowChart.png?raw=true">
+<img src="https://fraud-detection-handbook.github.io/fraud-detection-handbook/_images/FlowDatasetGenerator.png">
 
 圖2. 交易生成流程。客戶和終端機檔案被用來生成一組交易資料。最後一個步驟是生成詐欺情境，這將產生已標記的交易表格。
 

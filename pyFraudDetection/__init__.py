@@ -6,6 +6,7 @@ from .fds_utils import read_markdown_file
 from .fds_utils import get_metrics_df
 from .fds_utils import save_object
 from .fds_utils import restore_object
+from .fds_utils import print_directory_structure
 
 from .simulator import generate_customer_profiles_table
 from .simulator import generate_terminal_profiles_table
@@ -14,3 +15,4 @@ from .simulator import generate_transactions_table
 from .simulator import generate_dataset
 from .simulator import add_frauds
 from .simulator import get_stats
+from .simulator import save_simulated_data

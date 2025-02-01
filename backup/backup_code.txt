@@ -1,0 +1,10 @@
+            elif (options=="儲存實真資料"):
+                FILE_OUTPUT = os.getcwd()+"/data/simulated-data-no-fraud.pkl"
+                save_object(transactions_df, FILE_OUTPUT)
+                    
+            elif ():
+                FILE_INPUT=os.getcwd()+"/data/simulated-data-no-fraud.pkl" 
+                if not os.path.exists(FILE_INPUT):
+                   st.write('真實資料不存在，請重新產生') 
+                else:
+                    transactions_df=restore_object(FILE_INPUT)
