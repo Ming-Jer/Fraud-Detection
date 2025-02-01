@@ -315,10 +315,10 @@ with tab_fraud:
         with st.echo():
             sns.set(style='darkgrid')
             sns.set(font_scale=1.4)
+            
+            fraud_and_transactions_stats_fig, ax = plt.subplots(figsize=(15,8))
 
-            fraud_and_transactions_stats_fig = plt.gcf()
-
-            fraud_and_transactions_stats_fig.set_size_inches(15, 8)
+            #fraud_and_transactions_stats_fig.set_size_inches(15, 8)
 
             sns_plot = sns.lineplot(x="TX_TIME_DAYS", y="value", data=tx_stats, hue="stat_type", hue_order=["nb_tx_per_day","nb_fraud_per_day","nb_fraudcard_per_day"], legend=False)
 
