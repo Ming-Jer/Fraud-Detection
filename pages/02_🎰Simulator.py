@@ -10,6 +10,8 @@ sns.set_style('darkgrid', {'axes.facecolor': '0.9'})
 # FDS UI
 from pyFraudDetection import fds_sidebar
 from pyFraudDetection import read_markdown_file
+from pyFraudDetection import save_object
+from pyFraudDetection import restore_object
 
 # FDS simulator modules
 from pyFraudDetection import generate_customer_profiles_table
@@ -159,7 +161,7 @@ with tab_trans:
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
             transaction_table_customer_0=generate_transactions_table(customer_profiles_table.iloc[0], 
-                                                                start_date = "2018-04-01", 
+                                                                start_date = "2024-04-01", 
                                                                 nb_days = 5)
             st.dataframe(transaction_table_customer_0, hide_index = True)
 
@@ -186,38 +188,42 @@ with tab_scale:
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
     intro_markdown="""
-    可選擇模擬資料規模說明:
-    - 中等資料 (500位客戶、1,000個終端機、18天(17,067筆交易資料)
-    - 真實資料 (5,000位客戶、10,000個終端機、183天(1,754,155筆交易資料)
+    請選擇模擬資料處理說明:
+    - 產生真實資料 (5,000位客戶、10,000個終端機、183天(1,754,155筆交易資料)，約需1-3分鐘左右，端賴您的電腦效能而定。
+    - 儲存真實資料 (便於後續使用)。
+    - 載入先前已經產生真實資料 (便於後續使用)。
     """
     st.markdown(intro_markdown, unsafe_allow_html=True)
 
-    #s_customers=500
-    #s_terminals=1000
-    #s_nb_days=18
     options = st.selectbox(
-        "選擇模擬資料規模",
-        ("中等資料", "真實資料"),index=0,
+        "模擬資料處理選項",
+        ("產生實真資料", "儲存實真資料", "載入實真資料"),index=2,
     )
 
     with st.expander("顯示原始碼 See Source Code"):
         with st.echo():
-            if (options=="中等資料"):
-                s_customers=500
-                s_terminals=1000
-                s_nb_days=18
-            elif (options=="真實資料"):
-                s_customers = 5000
-                s_terminals = 10000
-                s_nb_days=183
+            if (options=="產生實真資料"):
+                st.write("You selected:", options, s_customers, s_terminals, s_nb_days)
+                (customer_profiles_table, terminal_profiles_table, transactions_df)=\
+                    generate_dataset(n_customers = s_customers,
+                         n_terminals = s_terminals, 
+                         nb_days=s_nb_days, 
+                         start_date="2024-04-01", 
+                         r=5)
+            elif (options=="儲存實真資料"):
+                FILE_OUTPUT = os.getcwd()+"/data/simulated-data-no-fraud.pkl"
+                save_object(FILE_OUTPUT)
+                    
+            elif ():
+                FILE_INPUT=os.getcwd()+"/data/simulated-data-no-fraud.pkl" 
+                transactions_df=restore_object(FILE_INPUT)
+                
+    
+    # Protocol=4 required for Google Colab
+    transactions_day.to_pickle(DIR_OUTPUT+filename_output, protocol=4)
 
-            st.write("You selected:", options, s_customers, s_terminals, s_nb_days)
-            (customer_profiles_table, terminal_profiles_table, transactions_df)=\
-                generate_dataset(n_customers = s_customers,
-                     n_terminals = s_terminals, 
-                     nb_days=s_nb_days, 
-                     start_date="2024-04-01", 
-                     r=5)
+
+
             st.dataframe(transactions_df, hide_index = True)
 
     st.dataframe(transactions_df, hide_index = True)
