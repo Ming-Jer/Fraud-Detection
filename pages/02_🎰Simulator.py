@@ -227,7 +227,7 @@ with tab_scale:
                 st.dataframe(transactions_df, hide_index = True)
             elif (options=="儲存實真資料"):
                 FILE_OUTPUT = os.getcwd()+"/data/simulated-data-no-fraud.pkl"
-                save_object(FILE_OUTPUT)
+                save_object(transactions_df, FILE_OUTPUT)
                     
             elif ():
                 FILE_INPUT=os.getcwd()+"/data/simulated-data-no-fraud.pkl" 
