@@ -3,13 +3,15 @@ import pandas as pd
 import os
 import numpy as np
 
-
 import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_style('darkgrid', {'axes.facecolor': '0.9'})
 
+# FDS UI
 from pyFraudDetection import fds_sidebar
 from pyFraudDetection import read_markdown_file
+
+# FDS simulator modules
 from pyFraudDetection import generate_customer_profiles_table
 from pyFraudDetection import generate_terminal_profiles_table
 from pyFraudDetection import get_list_terminals_within_radius

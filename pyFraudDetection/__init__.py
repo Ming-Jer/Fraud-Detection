@@ -2,8 +2,8 @@
 
 from .fds_utils import get_metrics_df
 
-from .fds_utils import fds_sidebar
-from .fds_utils import read_markdown_file
+from fds_UI import fds_sidebar
+from fds_UI import read_markdown_file
 
 from .simulator import generate_customer_profiles_table
 from .simulator import generate_terminal_profiles_table
