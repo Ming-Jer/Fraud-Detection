@@ -73,6 +73,15 @@ def read_from_files(DIR_INPUT, BEGIN_DATE, END_DATE):
 # ### save_object
 # 
 
+# 特徵轉換
+def is_weekend(tx_datetime):
+    
+    # Transform date into weekday (0 is Monday, 6 is Sunday)
+    weekday = tx_datetime.weekday()
+    # Binary value: 0 if weekday, 1 if weekend
+    is_weekend = weekday>=5
+    
+    return int(is_weekend)
 
 def print_directory_structure(path=''):
     dir_list = os.listdir(path)
