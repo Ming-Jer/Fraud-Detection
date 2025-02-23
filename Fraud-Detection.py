@@ -12,7 +12,7 @@ st.markdown(
     此應用程式展示了各種互動式網路應用程式，用以展示詐欺偵測手冊。
     """
 )
-st.subheader("請選擇左列功能列功能")
+st.subheader("請選擇左列功能列功能-")
 
 markdown = """
 1. Theory-背景知識、理論與發展現況
